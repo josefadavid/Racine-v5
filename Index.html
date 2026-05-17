@@ -1062,4 +1062,241 @@
       <div class="troc-card" style="background:#fff8e1;" onclick="go('s-troc-detail')"><div class="troc-card-emoji">🫙</div><div class="troc-card-title">Confiture maison</div><div class="troc-card-seek">🔄 Pots vides ou fruits</div><div class="troc-dist">📍 1.8 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (19)</div></div>
       <div class="troc-card" style="background:#e8f5e9;" onclick="go('s-troc-detail')"><div class="troc-card-emoji">🥬</div><div class="troc-card-title">Kale et chou frisé</div><div class="troc-card-seek">🔄 Carottes ou betteraves</div><div class="troc-dist">📍 4.3 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (11)</div></div>
       <div class="troc-card" style="background:#fde0d8;" onclick="go('s-troc-detail')"><div class="troc-card-emoji">🌶️</div><div class="troc-card-title">Piments forts</div><div class="troc-card-seek">🔄 Tomates ou ail</div><div class="troc-dist">📍 6.0 km</div><div class="troc-stars-sm">⭐⭐⭐⭐ (7)</div></div>
-      <div class="troc-card" style="background:#f5e8d8;" onclick="go('s-troc-detail')"><div class="troc-card-e
+      <div class="troc-card" style="background:#f5e8d8;" onclick="go('s-troc-detail')"><div class="troc-card-emoji">🍯</div><div class="troc-card-title">Miel de ruche</div><div class="troc-card-seek">🔄 Sirop d'érable</div><div class="troc-dist">📍 9.5 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (31)</div></div>
+      <div class="troc-card" style="background:#e8e0d0;" onclick="go('s-troc-detail')"><div class="troc-card-emoji">🌾</div><div class="troc-card-title">Plants de tomates</div><div class="troc-card-seek">🔄 N'importe quoi bio</div><div class="troc-dist">📍 2.7 km</div><div class="troc-stars-sm">⭐⭐⭐⭐ (9)</div></div>
+    </div>
+    <div style="padding:10px 18px;flex-shrink:0;background:var(--beige);border-top:1px solid var(--beige-md);">
+      <button class="btn btn-troc" onclick="go('s-troc-publish')">＋ Publier une annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('s-cal')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('s-boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT DÉTAIL -->
+  <div class="screen" id="s-troc-detail">
+    <div style="background:#e8f5e9;flex-shrink:0;position:relative;">
+      <button onclick="go('s-troc')" style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;z-index:2;">←</button>
+      <div style="padding:36px 24px 20px;text-align:center;">
+        <div style="font-size:4.5rem;margin-bottom:8px;">🍅</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:6px;">Tomates cerises</div>
+        <span style="background:var(--troc);color:white;border-radius:20px;padding:3px 12px;font-size:0.7rem;font-weight:700;">Légumes</span>
+      </div>
+    </div>
+    <div style="padding:14px 18px;flex:1;overflow-y:auto;">
+      <div class="troc-info-card">
+        <div class="troc-user-row">
+          <div style="font-size:1.9rem;">🧑‍🌾</div>
+          <div><div class="troc-username">Marie L. <span class="troc-verified">✓ Vérifiée</span></div><div class="troc-user-stars">⭐⭐⭐⭐⭐ · 12 évaluations · 87% taux de réponse</div></div>
+        </div>
+        <div class="troc-location">📍 Montréal, Rosemont · 1.2 km</div>
+      </div>
+      <div class="troc-desc-card">
+        <div class="troc-desc-label">À propos de l'offre</div>
+        <div class="troc-desc-text">Récolte du matin de mes plants Sungold et Sweet 100 cultivés sur balcon ensoleillé. Environ 1 kg disponible. Très sucrées 🍅 Je peux livrer aux abords du métro Beaubien.</div>
+        <div class="troc-detail-meta">
+          <span>🌱 Sans pesticide</span>
+          <span>📦 1 kg dispo</span>
+          <span>📅 il y a 3h</span>
+        </div>
+      </div>
+      <div class="troc-seek-card">
+        <div class="troc-seek-label">🔄 Cherche en échange</div>
+        <div style="font-size:0.86rem;color:var(--text);">Basilic frais (bouquet) ou courgettes du jardin. Ouverte aussi à du pain maison 🍞</div>
+      </div>
+      <div class="troc-tip">💡 Rencontrez-vous dans un lieu public — marché, parc. Dites à un proche où vous allez.</div>
+      <button class="troc-btn troc-btn-primary" onclick="toast('Message envoyé 💬');setTimeout(()=>go('s-troc-rate'),900)">💬 Contacter Marie</button>
+      <button class="troc-btn troc-btn-ghost" onclick="toast('Carte ouverte 🗺️')">🗺️ Voir sur la carte</button>
+      <button class="troc-btn troc-btn-report" onclick="toast('Annonce signalée')">⚑ Signaler cette annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('s-cal')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('s-boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT PUBLIER -->
+  <div class="screen" id="s-troc-publish">
+    <div class="troc-header">
+      <button onclick="go('s-troc')" style="background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;color:white;margin-bottom:8px;">←</button>
+      <div class="troc-greeting">Nouvelle annonce</div>
+      <div class="troc-title">Publier un échange</div>
+    </div>
+    <div style="padding:16px 18px;flex:1;overflow-y:auto;">
+      <div class="troc-field"><label>Ce que j'offre</label><input type="text" placeholder="Ex: Tomates cerises, basilic..."></div>
+      <div class="troc-field"><label>Catégorie</label><select><option>🥕 Légumes</option><option>🌱 Semences</option><option>🌿 Herbes</option><option>🍓 Fruits</option></select></div>
+      <div class="troc-field"><label>Ce que je cherche en échange</label><input type="text" placeholder="Ex: Courgettes, poivrons..."></div>
+      <div class="troc-field"><label>Quantité disponible</label><input type="text" placeholder="Ex: 1 kg, 3 plants..."></div>
+      <div class="troc-field"><label>Description</label><textarea placeholder="Variété, fraîcheur, comment vous rejoindre..."></textarea></div>
+      <div style="background:var(--troc-bg);border-radius:12px;padding:11px 13px;margin-bottom:14px;border-left:3px solid var(--troc);font-size:0.74rem;color:var(--troc);line-height:1.5;">🌱 Ton annonce sera visible par tous les membres de ta région. Après l'échange, vous pourrez vous laisser des étoiles !</div>
+      <button class="btn btn-troc" onclick="toast('Annonce publiée 🌿');setTimeout(()=>go('s-troc'),900)">🌿 Publier mon annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('s-cal')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('s-boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT ÉVALUER -->
+  <div class="screen" id="s-troc-rate">
+    <div class="troc-header"><div class="troc-greeting">Échange complété 🎉</div><div class="troc-title">Évalue ton échange</div></div>
+    <div style="padding:22px 18px;flex:1;">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:2.8rem;margin-bottom:8px;">🧑‍🌾</div>
+        <div style="font-weight:700;color:var(--text);font-size:0.96rem;margin-bottom:4px;">Marie L.</div>
+        <div style="font-size:0.8rem;color:var(--text-lt);">Tomates cerises ↔ Basilic</div>
+      </div>
+      <div style="background:var(--white);border-radius:16px;padding:18px;text-align:center;box-shadow:0 2px 10px rgba(74,55,40,0.07);margin-bottom:14px;">
+        <div style="font-size:0.8rem;color:var(--text-lt);margin-bottom:12px;font-weight:700;">Comment s'est passé l'échange ?</div>
+        <div class="star-rating" id="stars">
+          <span class="star" onclick="rateStar(1)">⭐</span>
+          <span class="star" onclick="rateStar(2)">⭐</span>
+          <span class="star" onclick="rateStar(3)">⭐</span>
+          <span class="star" onclick="rateStar(4)">⭐</span>
+          <span class="star" onclick="rateStar(5)">⭐</span>
+        </div>
+        <div id="star-label" style="font-size:0.76rem;color:var(--text-lt);margin-top:8px;height:18px;"></div>
+      </div>
+      <div style="background:var(--white);border-radius:14px;padding:14px;box-shadow:0 2px 10px rgba(74,55,40,0.07);margin-bottom:14px;">
+        <div style="font-size:0.6rem;color:var(--text-lt);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:700;">Un commentaire ?</div>
+        <textarea style="width:100%;background:var(--beige);border:none;border-radius:10px;padding:10px;font-family:'Lato',sans-serif;font-size:0.83rem;color:var(--text);resize:none;height:65px;outline:none;" placeholder="Très sympa, les tomates étaient délicieuses !"></textarea>
+      </div>
+      <button class="btn btn-troc" style="margin-bottom:8px;" onclick="toast('Évaluation envoyée 🌟');setTimeout(()=>go('s-troc'),900)">✅ Envoyer mon évaluation</button>
+      <button class="btn btn-ghost" onclick="go('s-troc')">Passer</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('s-cal')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('s-boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- PROFIL -->
+  <div class="screen" id="s-profil">
+    <div class="profil-hero">
+      <button class="profil-edit-btn">✏️</button>
+      <div class="profil-avatar">🧑‍🌾</div>
+      <div class="profil-name">Marie Tremblay</div>
+      <div class="profil-region">📍 Montréal, Rosemont · Membre depuis mars 2026</div>
+      <div class="profil-level">🌿 Niveau 4 · Jardinière</div>
+    </div>
+    <div class="profil-stats">
+      <div class="profil-stat"><div class="profil-stat-num">12</div><div class="profil-stat-label">Échanges</div></div>
+      <div class="profil-stat"><div class="profil-stat-num">⭐ 4.8</div><div class="profil-stat-label">Évaluation</div></div>
+      <div class="profil-stat"><div class="profil-stat-num">380$</div><div class="profil-stat-label">Économisé</div></div>
+    </div>
+    <div class="profil-section">
+
+      <div class="section-row"><div class="section-label" style="margin:0;">🏅 Mes badges</div><span class="section-link" onclick="toast('Tous les badges')">Voir tout →</span></div>
+      <div class="badge-row">
+        <div class="badge-item" onclick="toast('🌱 Premier semis')"><div class="badge-icon">🌱</div><div class="badge-name">1er semis</div></div>
+        <div class="badge-item" onclick="toast('🍞 Premier pain')"><div class="badge-icon">🍞</div><div class="badge-name">1er pain</div></div>
+        <div class="badge-item" onclick="toast('🔄 Premier troc')"><div class="badge-icon">🔄</div><div class="badge-name">1er troc</div></div>
+        <div class="badge-item" onclick="toast('🔥 7 jours')"><div class="badge-icon">🔥</div><div class="badge-name">7 jours</div></div>
+        <div class="badge-item" onclick="toast('🍅 Récolteuse')"><div class="badge-icon">🍅</div><div class="badge-name">Récolteuse</div></div>
+        <div class="badge-item locked" onclick="toast('🫙 5 recettes à débloquer')"><div class="badge-icon">🫙</div><div class="badge-name">Conserves</div></div>
+        <div class="badge-item locked" onclick="toast('💯 100$ à débloquer')"><div class="badge-icon">💯</div><div class="badge-name">100$ club</div></div>
+        <div class="badge-item locked" onclick="toast('🌳 1 an à débloquer')"><div class="badge-icon">🌳</div><div class="badge-name">1 an</div></div>
+      </div>
+
+      <div class="section-label">📜 Activité récente</div>
+      <div class="activity-list">
+        <div class="activity-row"><div class="activity-icon">🍓</div><div style="flex:1;"><div class="activity-text">Première récolte de fraises (+6,75 $)</div><div class="activity-time">Hier · 14h32</div></div></div>
+        <div class="activity-row"><div class="activity-icon">🔄</div><div style="flex:1;"><div class="activity-text">Échange complété avec Marie L.</div><div class="activity-time">Vendredi · 17h05</div></div></div>
+        <div class="activity-row"><div class="activity-icon">🍞</div><div style="flex:1;"><div class="activity-text">Pain sourdough complété · ⭐ 4 étoiles</div><div class="activity-time">11 mai · 11h20</div></div></div>
+        <div class="activity-row"><div class="activity-icon">🛒</div><div style="flex:1;"><div class="activity-text">Commande Boutique livrée (38,75 $)</div><div class="activity-time">8 mai · 09h15</div></div></div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Mes annonces TrocVert actives</div>
+      <div class="profil-annonce"><div class="profil-annonce-emoji">🍅</div><div><div class="profil-annonce-title">Tomates cerises</div><div class="profil-annonce-sub">🔄 Cherche : Basilic ou courgettes</div></div><div class="profil-annonce-status">Active</div></div>
+      <div class="profil-annonce"><div class="profil-annonce-emoji">🌿</div><div><div class="profil-annonce-title">Basilic Grand Vert</div><div class="profil-annonce-sub">🔄 Cherche : Herbes variées</div></div><div class="profil-annonce-status">Active</div></div>
+
+      <div class="section-label">Mon jardin</div>
+      <div class="profil-row" onclick="go('s-journal')"><div class="profil-row-icon">📔</div><div class="profil-row-text"><div class="profil-row-title">Journal de culture</div><div class="profil-row-sub">23 entrées cette saison</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row" onclick="go('s-cal')"><div class="profil-row-icon">📅</div><div class="profil-row-text"><div class="profil-row-title">Mon calendrier de semis</div><div class="profil-row-sub">6 cultures actives · 3 à transplanter</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row" onclick="go('s-budget')"><div class="profil-row-icon">💰</div><div class="profil-row-text"><div class="profil-row-title">Mes économies</div><div class="profil-row-sub">127,40 $ cette saison · +12% vs avr.</div></div><div class="profil-row-arrow">›</div></div>
+
+      <div class="section-label">Paramètres</div>
+      <div class="profil-row"><div class="profil-row-icon">📍</div><div class="profil-row-text"><div class="profil-row-title">Ma région</div><div class="profil-row-sub">Montréal, Rosemont · Zone 5b</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">🔔</div><div class="profil-row-text"><div class="profil-row-title">Notifications</div><div class="profil-row-sub">Alertes semis, messages TrocVert, météo</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">🌐</div><div class="profil-row-text"><div class="profil-row-title">Langue</div><div class="profil-row-sub">Français (Québec)</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">🌾</div><div class="profil-row-text"><div class="profil-row-title">Ferme Gaïa</div><div class="profil-row-sub">Voir la boutique et les produits</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">❓</div><div class="profil-row-text"><div class="profil-row-title">Aide &amp; support</div><div class="profil-row-sub">FAQ, contact, conditions</div></div><div class="profil-row-arrow">›</div></div>
+      <div style="padding:14px 0 24px;">
+        <button class="btn btn-ghost" style="color:#c62828;border-color:#ffcdd2;" onclick="if(confirm('Se déconnecter ?')){go('s-splash');toast('À bientôt 🌿');}">Se déconnecter</button>
+        <div style="text-align:center;font-size:0.6rem;color:var(--text-lt);margin-top:12px;letter-spacing:1px;">Racines v5 · par Ferme Gaïa</div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('s-cal')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('s-boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+</div>
+<div class="device-label">Racines v5 — par Ferme Gaïa · Profil · Calendrier · TrocVert 🌿</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  const profil = {};
+  function go(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById(id).scrollTop = 0;
+  }
+  function selectOb(el, next, key, val) {
+    el.closest('.ob-options').querySelectorAll('.ob-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    profil[key] = val;
+    if (next === 's-ob-resume') {
+      document.getElementById('res-espace').textContent = profil['espace'] || '—';
+      document.getElementById('res-raison').textContent = profil['raison'] || '—';
+      document.getElementById('res-debut').textContent = profil['debut'] || val;
+    }
+    setTimeout(() => go(next), 320);
+  }
+  function checkMission(cid, mid) {
+    document.getElementById(cid).classList.toggle('checked');
+    document.getElementById(mid).classList.toggle('done');
+  }
+  function filterCat(el) {
+    document.querySelectorAll('.troc-cat').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+  const starLabels = ['😕 Pas génial','😐 Correct','🙂 Bien','😊 Très bien','🤩 Parfait !'];
+  function rateStar(n) {
+    document.querySelectorAll('.star').forEach((s,i) => s.classList.toggle('active', i < n));
+    document.getElementById('star-label').textContent = starLabels[n-1];
+  }
+  let toastTimer;
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+</script>
+</body>
+          </html>
