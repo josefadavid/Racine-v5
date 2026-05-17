@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Racines v3 — par Ferme Gaïa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brun:    #4a3728;
+    --brun-md: #6b5744;
+    --brun-lt: #9c7c65;
+    --olive:   #6b7c4a;
+    --olive-lt:#8fa066;
+    --beige:   #f2ead8;
+    --beige-md:#d4c5a9;
+    --beige-dk:#c4ae88;
+    --white:   #fffdf7;
+    --text:    #3a2e22;
+    --text-lt: #7a6555;
+    --gold:    #c49a2a;
+    --gold-lt: #f0d080;
+    --troc:    #2e7d32;
+    --troc-lt: #43a047;
+    --troc-bg: #e8f5e9;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    background: #e8dfc8;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-start;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    padding: 24px 16px 40px;
+  }
+  .device {
+    width: 375px; height: 740px;
+    background: var(--beige);
+    border-radius: 44px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(74,55,40,0.35), 0 0 0 8px var(--brun);
+    position: relative;
+  }
+  .status-bar {
+    background: var(--brun);
+    padding: 10px 24px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .status-bar .time { color: var(--beige); font-size: 0.75rem; font-weight: 700; }
+  .status-bar .icons { color: var(--beige); font-size: 0.7rem; opacity: 0.8; }
+  .screen { display: none; flex-direction: column; height: calc(740px - 36px); overflow-y: auto; scrollbar-width: none; animation: fadeIn 0.25s ease; }
+  .screen::-webkit-scrollbar { display: none; }
+  .screen.active { display: flex; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+  /* BOTTOM NAV */
+  .bottom-nav { background: var(--white); border-top: 1px solid var(--beige-md); display: flex; padding: 8px 0 12px; position: sticky; bottom: 0; flex-shrink: 0; }
+  .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; opacity: 0.38; transition: opacity 0.2s; }
+  .nav-item.active { opacity: 1; }
+  .nav-icon { font-size: 1.15rem; }
+  .nav-label { font-size: 0.54rem; color: var(--text); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+  .nav-item.active .nav-label { color: var(--olive); }
+  .nav-item.troc-active.active .nav-label { color: var(--troc); }
+
+  /* SHARED */
+  .page-header { background: var(--brun); padding: 20px 24px 24px; flex-shrink: 0; }
+  .page-header .greeting { font-size: 0.7rem; color: var(--beige-dk); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .page-header .title { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--beige); line-height: 1.3; }
+  .page-header .subtitle { font-size: 0.75rem; color: var(--beige-md); margin-top: 4px; }
+  .page-body { padding: 18px 18px 8px; flex: 1; }
+  .section-label { font-size: 0.62rem; color: var(--text-lt); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; margin-top: 18px; }
+  .section-label:first-child { margin-top: 0; }
+  .card { background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(74,55,40,0.07); margin-bottom: 12px; overflow: hidden; }
+  .btn-primary { background: var(--olive); color: var(--beige); border: none; border-radius: 13px; padding: 14px 20px; font-size: 0.88rem; font-weight: 700; width: 100%; cursor: pointer; transition: transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Lato', sans-serif; }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-primary.troc-green { background: linear-gradient(135deg, #1b5e20, var(--troc)); }
+  .btn-ghost { background: transparent; color: var(--text-lt); border: 1.5px solid var(--beige-md); border-radius: 13px; padding: 12px 20px; font-size: 0.85rem; font-weight: 700; width: 100%; cursor: pointer; margin-top: 8px; font-family: 'Lato', sans-serif; }
+  .premium-badge { background: linear-gradient(135deg, var(--gold), #a07820); color: var(--beige); font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: inline-flex; align-items: center; gap: 3px; }
+
+  /* SPLASH */
+  #s-splash { background: var(--brun); align-items: center; justify-content: center; padding: 40px 32px; text-align: center; position: relative; overflow: hidden; }
+  #s-splash::before { content: ''; position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(107,124,74,0.2) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; }
+  .splash-leaf { font-size: 3.2rem; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .splash-title { font-family:'Playfair Display',serif; font-size:3rem; color:var(--beige); letter-spacing:2px; margin-bottom:4px; }
+  .splash-sub { font-size:0.68rem; color:var(--beige-dk); letter-spacing:3px; text-transform:uppercase; margin-bottom:24px; }
+  .splash-tagline { font-family:'Playfair Display',serif; font-style:italic; font-size:0.95rem; color:var(--beige-md); line-height:1.6; margin-bottom:40px; max-width:260px; }
+
+  /* ONBOARDING */
+  .ob-header { background:var(--brun); padding:24px 24px 20px; flex-shrink:0; }
+  .ob-step { font-size:0.62rem; color:var(--beige-dk); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .ob-progress { display:flex; gap:5px; margin-bottom:14px; }
+  .ob-dot { height:3px; flex:1; border-radius:2px; background:rgba(242,234,216,0.2); }
+  .ob-dot.done { background:var(--olive-lt); }
+  .ob-dot.active { background:var(--beige); }
+  .ob-question { font-family:'Playfair Display',serif; font-size:1.35rem; color:var(--beige); line-height:1.4; }
+  .ob-body { padding:20px 18px; flex:1; }
+  .ob-options { display:flex; flex-direction:column; gap:10px; }
+  .ob-option { background:var(--white); border:2px solid transparent; border-radius:14px; padding:14px 16px; cursor:pointer; display:flex; align-items:center; gap:12px; transition:border-color 0.2s, background 0.2s; }
+  .ob-option.selected, .ob-option:active { border-color:var(--olive); background:#f0ede0; }
+  .ob-icon { font-size:1.5rem; }
+  .ob-text { font-size:0.88rem; color:var(--text); font-weight:600; }
+  .ob-sub { font-size:0.72rem; color:var(--text-lt); margin-top:2px; }
+
+  /* HOME */
+  .home-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(107,124,74,0.3); border-radius:20px; padding:5px 12px; font-size:0.72rem; color:var(--beige-md); margin-top:10px; }
+  .mission-card { background:var(--white); border-radius:14px; padding:16px; margin-bottom:10px; border-left:4px solid var(--olive); box-shadow:0 2px 10px rgba(74,55,40,0.07); cursor:pointer; }
+  .mission-card.done { border-left-color:var(--beige-dk); opacity:0.6; }
+  .mission-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+  .mission-tag { font-size:0.62rem; color:var(--olive); font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+  .mission-check { width:22px; height:22px; border-radius:50%; border:2px solid var(--beige-md); display:flex; align-items:center; justify-content:center; font-size:0.65rem; cursor:pointer; transition:background 0.2s, border-color 0.2s; flex-shrink:0; }
+  .mission-check.checked { background:var(--olive); border-color:var(--olive); color:white; }
+  .mission-text { font-size:0.9rem; color:var(--text); font-weight:600; line-height:1.4; }
+  .mission-sub { font-size:0.75rem; color:var(--text-lt); margin-top:3px; }
+  .tip-card { background:linear-gradient(135deg, var(--brun-md), var(--brun)); border-radius:14px; padding:16px; display:flex; gap:12px; align-items:flex-start; }
+  .tip-icon { font-size:1.3rem; }
+  .tip-title { font-size:0.68rem; color:var(--beige-dk); letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
+  .tip-text { font-size:0.82rem; color:var(--beige); line-height:1.5; }
+  .photo-strip { display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+  .photo-strip::-webkit-scrollbar { display:none; }
+  .photo-thumb { width:82px; height:82px; min-width:82px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; cursor:pointer; transition:transform 0.15s; }
+  .photo-thumb:active { transform:scale(0.95); }
+  .photo-add { background:var(--white); border:2px dashed var(--beige-md); font-size:1.4rem; color:var(--beige-dk); }
+
+  /* BUDGET */
+  .savings-hero { background: linear-gradient(135deg, var(--olive), #4a5c2a); border-radius: 18px; padding: 22px; margin-bottom: 14px; text-align: center; }
+  .savings-amount { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--beige); font-weight: 700; line-height: 1; }
+  .savings-label { font-size: 0.75rem; color: rgba(242,234,216,0.75); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+  .savings-sub { font-size: 0.82rem; color: var(--beige-md); margin-top: 8px; }
+  .budget-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 16px; border-bottom: 1px solid var(--beige); }
+  .budget-row:last-child { border-bottom: none; }
+  .budget-item-left { display: flex; align-items: center; gap: 10px; }
+  .budget-emoji { font-size: 1.3rem; }
+  .budget-name { font-size: 0.88rem; color: var(--text); font-weight: 600; }
+  .budget-qty { font-size: 0.72rem; color: var(--text-lt); margin-top:1px; }
+  .budget-saving { font-size: 0.9rem; color: var(--olive); font-weight: 700; }
+  .epicerie-compare { background: var(--beige); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .compare-title { font-size: 0.7rem; color: var(--text-lt); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+  .compare-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .compare-label { font-size: 0.82rem; color: var(--text); }
+  .compare-bar-wrap { flex: 1; margin: 0 10px; height: 6px; background: var(--beige-md); border-radius: 4px; overflow: hidden; }
+  .compare-bar { height: 100%; border-radius: 4px; }
+  .compare-val { font-size: 0.82rem; font-weight: 700; min-width: 40px; text-align: right; }
+  .add-culture-btn { background: var(--beige); border: 1.5px dashed var(--olive); border-radius: 13px; padding: 13px; font-size: 0.85rem; color: var(--olive); font-weight: 700; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 12px; font-family: 'Lato', sans-serif; }
+
+  /* DIY */
+  .diy-categories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 14px; scrollbar-width: none; }
+  .diy-categories::-webkit-scrollbar { display: none; }
+  .diy-cat { background: var(--white); border: 2px solid transparent; border-radius: 20px; padding: 7px 14px; font-size: 0.75rem; font-weight: 700; color: var(--text-lt); white-space: nowrap; cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-family: 'Lato', sans-serif; }
+  .diy-cat.active { background: var(--olive); color: var(--beige); border-color: var(--olive); }
+  .recipe-card { background: var(--white); border-radius: 16px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(74,55,40,0.07); cursor: pointer; }
+  .recipe-img { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; }
+  .recipe-badge-wrap { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; }
+  .recipe-tag { background: rgba(74,55,40,0.75); color: var(--beige); font-size: 0.62rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; }
+  .recipe-info { padding: 12px 14px; }
+  .recipe-title { font-size: 0.92rem; color: var(--text); font-weight: 700; margin-bottom: 3px; }
+  .recipe-desc { font-size: 0.75rem; color: var(--text-lt); line-height: 1.4; margin-bottom: 10px; }
+  .recipe-footer { display: flex; justify-content: space-between; align-items: center; }
+  .recipe-meta { font-size: 0.7rem; color: var(--text-lt); }
+  .recipe-shop { background: var(--olive); color: var(--beige); font-size: 0.7rem; font-weight: 700; padding: 5px 10px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Lato', sans-serif; }
+  .manque-card { background: linear-gradient(135deg, #f5ede0, #ede0c8); border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; border-left: 4px solid var(--gold); }
+  .manque-title { font-size: 0.68rem; color: var(--gold); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .manque-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .manque-name { font-size: 0.85rem; color: var(--text); }
+  .manque-btn { background: var(--brun); color: var(--beige); font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Lato', sans-serif; }
+
+  /* JOURNAL */
+  .journal-entry { background: var(--white); border-radius: 16px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(74,55,40,0.07); }
+  .entry-date { font-size:0.62rem; color:var(--text-lt); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; }
+  .entry-img { width:100%; height:130px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:3rem; margin-bottom:10px; }
+  .entry-note { font-size:0.84rem; color:var(--text); line-height:1.55; margin-bottom:8px; }
+  .entry-tags { display:flex; gap:6px; flex-wrap:wrap; }
+  .tag { background:var(--beige-md); color:var(--brun); font-size:0.62rem; font-weight:700; letter-spacing:1px; padding:3px 9px; border-radius:16px; text-transform:uppercase; }
+
+  /* BOUTIQUE */
+  .promo-card { background: linear-gradient(135deg, var(--olive), #4a5c2a); border-radius: 16px; padding: 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .promo-text .promo-title { font-family:'Playfair Display',serif; font-size:0.95rem; color:var(--beige); margin-bottom:3px; }
+  .promo-text .promo-sub { font-size:0.72rem; color:rgba(242,234,216,0.75); }
+  .promo-icon { font-size:2.2rem; }
+  .seed-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .seed-card { background:var(--white); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(74,55,40,0.07); cursor:pointer; transition:transform 0.15s; }
+  .seed-card:active { transform:scale(0.97); }
+  .seed-img { height:82px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; }
+  .seed-info { padding:9px 11px 12px; }
+  .seed-name { font-size:0.82rem; color:var(--text); font-weight:700; margin-bottom:1px; }
+  .seed-origin { font-size:0.68rem; color:var(--text-lt); margin-bottom:7px; }
+  .seed-footer { display:flex; justify-content:space-between; align-items:center; }
+  .seed-price { font-size:0.88rem; color:var(--olive); font-weight:700; }
+  .seed-add { background:var(--olive); color:white; border:none; border-radius:8px; width:24px; height:24px; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+
+  /* TROCVERT */
+  .troc-header { background: linear-gradient(135deg, #1b5e20, var(--troc)); padding: 20px 24px 16px; flex-shrink: 0; }
+  .troc-greeting { font-size: 0.7rem; color: rgba(242,234,216,0.7); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .troc-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--beige); line-height: 1.3; }
+  .troc-search { background: rgba(255,255,255,0.15); border-radius: 50px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; margin-top: 10px; cursor: pointer; }
+  .troc-search span { font-size: 0.85rem; color: rgba(242,234,216,0.6); }
+  .troc-cats { display: flex; gap: 8px; overflow-x: auto; padding: 10px 18px 0; scrollbar-width: none; flex-shrink: 0; }
+  .troc-cats::-webkit-scrollbar { display: none; }
+  .troc-cat { background: var(--white); border: 2px solid transparent; border-radius: 20px; padding: 6px 14px; font-size: 0.75rem; font-weight: 700; color: var(--text-lt); white-space: nowrap; cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-family: 'Lato', sans-serif; }
+  .troc-cat.active { background: var(--troc); color: white; border-color: var(--troc); }
+  .troc-banner { margin: 12px 18px 0; background: linear-gradient(135deg, #ff8f00, #ffca28); border-radius: 14px; padding: 12px 16px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .troc-banner::after { content: '🥕'; position: absolute; right: 8px; top: -4px; font-size: 3.5rem; opacity: 0.15; }
+  .troc-banner-label { font-size: 0.62rem; color: rgba(74,55,40,0.7); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .troc-banner-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--brun); }
+  .troc-banner-sub { font-size: 0.7rem; color: rgba(74,55,40,0.65); margin-top: 2px; }
+  .troc-grid { padding: 12px 18px; columns: 2; gap: 10px; flex: 1; }
+  .troc-card { border-radius: 16px; padding: 13px; margin-bottom: 10px; break-inside: avoid; cursor: pointer; box-shadow: 0 2px 10px rgba(74,55,40,0.07); transition: transform 0.15s; }
+  .troc-card:active { transform: scale(0.97); }
+  .troc-card-emoji { font-size: 2.8rem; text-align: center; margin-bottom: 8px; }
+  .troc-card-title { font-size: 0.85rem; color: var(--text); font-weight: 700; margin-bottom: 3px; }
+  .troc-card-seek { font-size: 0.7rem; color: var(--text-lt); margin-bottom: 7px; }
+  .troc-card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .troc-dist { font-size: 0.68rem; color: #999; }
+  .troc-stars-sm { font-size: 0.68rem; color: #888; margin-top: 3px; }
+
+  /* Détail */
+  .troc-detail-hero { flex-shrink: 0; text-align: center; padding: 36px 24px 20px; position: relative; }
+  .troc-detail-emoji { font-size: 5rem; margin-bottom: 8px; }
+  .troc-detail-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 6px; }
+  .troc-detail-cat { background: var(--troc); color: white; border-radius: 20px; padding: 3px 12px; font-size: 0.72rem; font-weight: 700; display: inline-block; }
+  .troc-info-card { background: var(--white); border-radius: 16px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 2px 10px rgba(74,55,40,0.07); }
+  .troc-user-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .troc-avatar { font-size: 2rem; }
+  .troc-username { font-weight: 700; color: var(--text); font-size: 0.88rem; }
+  .troc-user-stars { font-size: 0.75rem; color: #888; margin-top: 1px; }
+  .troc-location { font-size: 0.8rem; color: #888; }
+  .troc-seek-card { background: var(--white); border-radius: 16px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 2px 10px rgba(74,55,40,0.07); }
+  .troc-seek-label { font-size: 0.62rem; color: var(--troc); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .troc-seek-value { font-size: 0.88rem; color: var(--text); }
+  .troc-tip { background: var(--troc-bg); border-radius: 12px; padding: 11px 14px; margin-bottom: 14px; font-size: 0.78rem; color: var(--troc); line-height: 1.5; border-left: 3px solid var(--troc); }
+  .troc-btn { width: 100%; border: none; border-radius: 13px; padding: 14px; font-size: 0.88rem; font-weight: 700; cursor: pointer; margin-bottom: 8px; font-family: 'Lato', sans-serif; }
+  .troc-btn-primary { background: linear-gradient(135deg, #1b5e20, var(--troc)); color: white; box-shadow: 0 4px 16px rgba(46,125,50,0.3); }
+  .troc-btn-ghost { background: white; color: var(--troc); border: 2px solid var(--troc) !important; }
+  .troc-btn-report { background: transparent; color: #ccc; border: 1px solid #eee !important; font-size: 0.78rem; padding: 10px; }
+
+  /* Stars rating */
+  .star-rating { display: flex; gap: 6px; margin-top: 8px; }
+  .star { font-size: 1.6rem; cursor: pointer; opacity: 0.3; transition: opacity 0.15s; }
+  .star.active { opacity: 1; }
+
+  /* Publier */
+  .troc-field { margin-bottom: 14px; }
+  .troc-field label { display: block; font-size: 0.62rem; color: var(--text-lt); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
+  .troc-field input, .troc-field select, .troc-field textarea { width: 100%; background: var(--white); border: 1.5px solid var(--beige-md); border-radius: 10px; padding: 10px 14px; font-size: 0.88rem; color: var(--text); font-family: 'Lato', sans-serif; outline: none; }
+  .troc-field textarea { height: 70px; resize: none; }
+
+  .device-label { text-align:center; margin-top:14px; font-size:0.72rem; color:#8a7a6a; letter-spacing:1px; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="device">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="icons">●●● WiFi 🔋</span>
+  </div>
+
+  <!-- SPLASH -->
+  <div class="screen active" id="s-splash">
+    <div class="splash-leaf">🌿</div>
+    <div class="splash-title">Racines</div>
+    <div class="splash-sub">par Ferme Gaïa</div>
+    <div class="splash-tagline">"Cultive, cuisine, économise et échange. On t'accompagne à chaque étape."</div>
+    <button class="btn-primary" onclick="go('s-ob1')">Commencer — c'est gratuit</button>
+    <button class="btn-ghost" onclick="go('s-home')">J'ai déjà un compte</button>
+  </div>
+
+  <!-- ONBOARDING 1 -->
+  <div class="screen" id="s-ob1">
+    <div class="ob-header">
+      <div class="ob-step">Étape 1 sur 3</div>
+      <div class="ob-progress"><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
+      <div class="ob-question">Tu as quoi comme espace pour jardiner ?</div>
+    </div>
+    <div class="ob-body">
+      <div class="ob-options">
+        <div class="ob-option" onclick="selectOb(this,'s-ob2')"><div class="ob-icon">🏙️</div><div><div class="ob-text">Un balcon ou une terrasse</div><div class="ob-sub">En appartement ou en ville</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-ob2')"><div class="ob-icon">🏡</div><div><div class="ob-text">Un petit jardin</div><div class="ob-sub">Cour arrière, parterre</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-ob2')"><div class="ob-icon">🌾</div><div><div class="ob-text">Un grand terrain</div><div class="ob-sub">Champ, potager spacieux</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-ob2')"><div class="ob-icon">✨</div><div><div class="ob-text">Rien encore — je rêve</div><div class="ob-sub">Je me prépare pour plus tard</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONBOARDING 2 -->
+  <div class="screen" id="s-ob2">
+    <div class="ob-header">
+      <div class="ob-step">Étape 2 sur 3</div>
+      <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot active"></div><div class="ob-dot"></div></div>
+      <div class="ob-question">Qu'est-ce qui t'a amené ici ?</div>
+    </div>
+    <div class="ob-body">
+      <div class="ob-options">
+        <div class="ob-option" onclick="selectOb(this,'s-ob3')"><div class="ob-icon">💰</div><div><div class="ob-text">Réduire ma facture d'épicerie</div><div class="ob-sub">L'alimentation coûte trop cher</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-ob3')"><div class="ob-icon">🌱</div><div><div class="ob-text">Devenir plus autonome</div><div class="ob-sub">Produire ma propre nourriture</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-ob3')"><div class="ob-icon">👨‍👩‍👧</div><div><div class="ob-text">Pour ma famille</div><div class="ob-sub">Mieux manger, apprendre ensemble</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-ob3')"><div class="ob-icon">🌍</div><div><div class="ob-text">Pour l'environnement</div><div class="ob-sub">Réduire mon empreinte</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONBOARDING 3 -->
+  <div class="screen" id="s-ob3">
+    <div class="ob-header">
+      <div class="ob-step">Étape 3 sur 3</div>
+      <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot active"></div></div>
+      <div class="ob-question">Par quoi tu veux commencer ?</div>
+    </div>
+    <div class="ob-body">
+      <div class="ob-options">
+        <div class="ob-option" onclick="selectOb(this,'s-home')"><div class="ob-icon">🍅</div><div><div class="ob-text">Cultiver mes légumes</div><div class="ob-sub">Tomates, laitue, herbes...</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-home')"><div class="ob-icon">🍞</div><div><div class="ob-text">Cuisiner from scratch</div><div class="ob-sub">Pain, pâtes, conserves...</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-home')"><div class="ob-icon">🔄</div><div><div class="ob-text">Échanger mes surplus</div><div class="ob-sub">TrocVert — gratuit !</div></div></div>
+        <div class="ob-option" onclick="selectOb(this,'s-home')"><div class="ob-icon">🎲</div><div><div class="ob-text">Tout à la fois !</div><div class="ob-sub">L'app crée mon plan complet</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class="screen" id="s-home">
+    <div class="page-header">
+      <div class="greeting">Bonjour 🌱</div>
+      <div class="title">Semaine 3 de culture</div>
+      <div class="home-badge">🍂 Automne · Québec</div>
+    </div>
+    <div class="page-body">
+      <div class="section-label">Tes missions cette semaine</div>
+      <div class="mission-card" id="m1">
+        <div class="mission-top"><div class="mission-tag">🌱 Semis</div><div class="mission-check" id="c1" onclick="checkMission('c1','m1')">✓</div></div>
+        <div class="mission-text">Prépare tes pots de semis de tomates</div>
+        <div class="mission-sub">Terreau + graines + lumière indirecte · 20 min</div>
+      </div>
+      <div class="mission-card" id="m2">
+        <div class="mission-top"><div class="mission-tag">💧 Arrosage</div><div class="mission-check" id="c2" onclick="checkMission('c2','m2')">✓</div></div>
+        <div class="mission-text">Arrose tes herbes aromatiques</div>
+        <div class="mission-sub">Sol légèrement humide, pas détrempé · 5 min</div>
+      </div>
+      <div class="mission-card done">
+        <div class="mission-top"><div class="mission-tag">🍞 DIY</div><div class="mission-check checked">✓</div></div>
+        <div class="mission-text">Faire ton premier pain sourdough</div>
+        <div class="mission-sub">✅ Complété hier — Bravo !</div>
+      </div>
+
+      <div class="section-label">TrocVert — Près de chez toi 🔄</div>
+      <div style="background:linear-gradient(135deg,#1b5e20,var(--troc));border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;cursor:pointer;position:relative;overflow:hidden;" onclick="go('s-troc')">
+        <div style="position:absolute;right:-8px;top:-8px;font-size:5rem;opacity:0.08;">🔄</div>
+        <div>
+          <div style="font-size:0.68rem;color:rgba(242,234,216,0.75);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;">Gratuit · Échange de surplus</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--beige);font-weight:700;">12 annonces près de toi</div>
+          <div style="font-size:0.72rem;color:var(--beige-md);margin-top:3px;">Voir les échanges →</div>
+        </div>
+        <div style="font-size:2.5rem;">🥕</div>
+      </div>
+
+      <div class="section-label">Tes économies ce mois</div>
+      <div style="background:linear-gradient(135deg,var(--olive),#4a5c2a);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;cursor:pointer;" onclick="go('s-budget')">
+        <div>
+          <div style="font-size:0.68rem;color:rgba(242,234,216,0.75);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;">Économies réalisées</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--beige);font-weight:700;">43,20 $</div>
+          <div style="font-size:0.72rem;color:var(--beige-md);margin-top:2px;">ce mois · voir le détail →</div>
+        </div>
+        <div style="font-size:2.5rem;">🌿</div>
+      </div>
+
+      <div class="section-label">Mon journal</div>
+      <div class="photo-strip">
+        <div class="photo-thumb photo-add" onclick="go('s-journal')">＋</div>
+        <div class="photo-thumb" style="background:#d4e8c2;">🌱</div>
+        <div class="photo-thumb" style="background:#e8d5c2;">🍅</div>
+        <div class="photo-thumb" style="background:#e8e8c2;">🌿</div>
+        <div class="photo-thumb" style="background:#e8c2c2;">🍓</div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Conseil du jour</div>
+      <div class="tip-card">
+        <div class="tip-icon">🌡️</div>
+        <div><div class="tip-title">Alerte · Québec</div><div class="tip-text">Les premières gelées approchent. Rentre tes plants sensibles à l'intérieur cette semaine.</div></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- BUDGET -->
+  <div class="screen" id="s-budget">
+    <div class="page-header">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div><div class="greeting">Mes économies</div><div class="title">Mai 2026</div></div>
+        <span class="premium-badge">⭐ Premium</span>
+      </div>
+      <div class="subtitle">Vs prix épicerie habituelle</div>
+    </div>
+    <div class="page-body">
+      <div class="savings-hero">
+        <div class="savings-amount">127,40 $</div>
+        <div class="savings-label">économisés cette saison</div>
+        <div class="savings-sub">🎉 Ton abonnement Racines est rentabilisé 25x !</div>
+      </div>
+      <div class="section-label">Comparaison épicerie vs maison</div>
+      <div class="epicerie-compare">
+        <div class="compare-title">Ce mois-ci</div>
+        <div class="compare-row">
+          <div class="compare-label">🍅 Tomates</div>
+          <div class="compare-bar-wrap"><div class="compare-bar" style="width:30%;background:var(--olive);"></div></div>
+          <div class="compare-val" style="color:var(--olive);">2,10 $</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label" style="color:var(--text-lt);">→ Épicerie</div>
+          <div class="compare-bar-wrap"><div class="compare-bar" style="width:100%;background:var(--beige-dk);"></div></div>
+          <div class="compare-val" style="color:var(--text-lt);">7,50 $</div>
+        </div>
+        <div style="text-align:right;font-size:0.75rem;color:var(--olive);font-weight:700;margin-top:4px;">Tu économises 5,40 $ 🌱</div>
+      </div>
+      <div class="section-label">Détail de tes cultures</div>
+      <div class="card">
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🍅</div><div><div class="budget-name">Tomates cerises</div><div class="budget-qty">2,3 kg récoltés</div></div></div><div class="budget-saving">+17,25 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🌿</div><div><div class="budget-name">Basilic frais</div><div class="budget-qty">8 bouquets</div></div></div><div class="budget-saving">+12,00 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🥬</div><div><div class="budget-name">Laitue feuille</div><div class="budget-qty">6 têtes</div></div></div><div class="budget-saving">+9,00 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🍞</div><div><div class="budget-name">Pain sourdough</div><div class="budget-qty">4 pains maison</div></div></div><div class="budget-saving">+4,95 $</div></div>
+      </div>
+      <div class="add-culture-btn">＋ Ajouter une récolte</div>
+      <div class="tip-card">
+        <div class="tip-icon">📈</div>
+        <div><div class="tip-title">Projection saison</div><div class="tip-text">À ce rythme, tu économiseras environ 380 $ cette saison complète. 🌿</div></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item active" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- DIY -->
+  <div class="screen" id="s-diy">
+    <div class="page-header">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div><div class="greeting">Faire soi-même</div><div class="title">DIY & Cuisine</div></div>
+        <span class="premium-badge">⭐ Premium</span>
+      </div>
+      <div class="subtitle">Avec ta récolte · Zéro gaspillage</div>
+    </div>
+    <div class="page-body">
+      <div class="diy-categories">
+        <div class="diy-cat active">Tout</div>
+        <div class="diy-cat">🫙 Conserves</div>
+        <div class="diy-cat">🍞 Boulangerie</div>
+        <div class="diy-cat">🍝 Pâtes</div>
+        <div class="diy-cat">🥒 Fermentation</div>
+        <div class="diy-cat">🍓 Confitures</div>
+      </div>
+      <div class="section-label">Suggéré avec ta récolte actuelle</div>
+      <div class="recipe-card">
+        <div class="recipe-img" style="background:#fde8d8;">🫙<div class="recipe-badge-wrap"><div class="recipe-tag">Avec tes tomates</div></div></div>
+        <div class="recipe-info">
+          <div class="recipe-title">Sauce tomate maison en conserve</div>
+          <div class="recipe-desc">Transforme tes tomates en sauce pour tout l'hiver. Économise 45 $ vs épicerie.</div>
+          <div class="recipe-footer"><div class="recipe-meta">⏱ 2h · 🫙 8 pots · 💰 Économie : 45 $</div></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-img" style="background:#f5f0e0;">🍞<div class="recipe-badge-wrap"><div class="recipe-tag">Populaire</div></div></div>
+        <div class="recipe-info">
+          <div class="recipe-title">Pain sourdough au levain</div>
+          <div class="recipe-desc">Fais ton propre pain pour environ 1,20 $ vs 6-8 $ en boulangerie artisanale.</div>
+          <div class="recipe-footer"><div class="recipe-meta">⏱ 3h · 🍞 1 pain · 💰 Économie : 5 $</div><button class="recipe-shop" onclick="go('s-boutique')">🌾 Ingrédients</button></div>
+        </div>
+      </div>
+      <div class="recipe-card">
+        <div class="recipe-img" style="background:#e8f0e0;">🥒<div class="recipe-badge-wrap"><div class="recipe-tag">Fermentation</div></div></div>
+        <div class="recipe-info">
+          <div class="recipe-title">Légumes lacto-fermentés</div>
+          <div class="recipe-desc">Kimchi, choucroute, cornichons — conserve tes surplus naturellement sans cuisson.</div>
+          <div class="recipe-footer"><div class="recipe-meta">⏱ 30 min · 🫙 3 pots · 💰 Économie : 20 $</div></div>
+        </div>
+      </div>
+      <div class="section-label">Il te manque des ingrédients ?</div>
+      <div class="manque-card">
+        <div class="manque-title">🌾 Disponible chez Ferme Gaïa</div>
+        <div class="manque-item"><div class="manque-name">🌾 Farine de blé bio</div><button class="manque-btn" onclick="go('s-boutique')">3,50 $ →</button></div>
+        <div class="manque-item"><div class="manque-name">🧂 Gros sel de mer</div><button class="manque-btn" onclick="go('s-boutique')">2,25 $ →</button></div>
+        <div class="manque-item"><div class="manque-name">🍎 Pectine naturelle</div><button class="manque-btn" onclick="go('s-boutique')">4,00 $ →</button></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item active" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- JOURNAL -->
+  <div class="screen" id="s-journal">
+    <div class="page-header">
+      <div class="greeting">Mon Journal</div>
+      <div class="title">3 entrées ce mois</div>
+    </div>
+    <div class="page-body">
+      <button class="btn-primary" style="margin-bottom:14px;">📸 Ajouter une photo + note</button>
+      <div class="journal-entry">
+        <div class="entry-date">Mardi 7 mai 2026</div>
+        <div class="entry-img" style="background:#d4e8c2;">🌱</div>
+        <div class="entry-note">Mes premiers semis de basilic ont germé ! Deux petites feuilles. Je suis tellement fière. Hâte de faire mon premier pesto maison 🌿</div>
+        <div class="entry-tags"><span class="tag">Basilic</span><span class="tag">Germination</span><span class="tag">Semaine 1</span></div>
+      </div>
+      <div class="journal-entry">
+        <div class="entry-date">Vendredi 3 mai 2026</div>
+        <div class="entry-img" style="background:#f5f0e0;">🍞</div>
+        <div class="entry-note">Premier pain sourdough réussi ! Il est beau, croustillant, et ça coûte 1,20 $ vs 7 $ en boulangerie. L'app m'a guidée étape par étape. 🙌</div>
+        <div class="entry-tags"><span class="tag">Sourdough</span><span class="tag">DIY</span><span class="tag">Économie</span></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item active" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- BOUTIQUE -->
+  <div class="screen" id="s-boutique">
+    <div class="page-header">
+      <div class="greeting">Boutique</div>
+      <div class="title">Semences & Produits</div>
+      <div class="subtitle">Ferme Gaïa · Bio · Local · Québec</div>
+    </div>
+    <div class="page-body">
+      <div class="promo-card">
+        <div class="promo-text">
+          <div class="promo-title">Nouveautés printemps 🌱</div>
+          <div class="promo-sub">Semences hâtives — prêtes pour le Québec</div>
+        </div>
+        <div class="promo-icon">🌾</div>
+      </div>
+
+      <div class="section-label">🥦 Légumes frais — Ferme Gaïa</div>
+      <div class="seed-grid">
+        <div class="seed-card"><div class="seed-img" style="background:#d4f0d4;">🥬</div><div class="seed-info"><div class="seed-name">Laitue mélangée</div><div class="seed-origin">Ferme Gaïa · 200g</div><div class="seed-footer"><span class="seed-price">3,75 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fde8d8;">🍅</div><div class="seed-info"><div class="seed-name">Tomates cerises</div><div class="seed-origin">Ferme Gaïa · 250g</div><div class="seed-footer"><span class="seed-price">4,25 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#e8f5e9;">🥒</div><div class="seed-info"><div class="seed-name">Concombres</div><div class="seed-origin">Ferme Gaïa · 3 pcs</div><div class="seed-footer"><span class="seed-price">3,50 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#f3e5f5;">🧅</div><div class="seed-info"><div class="seed-name">Oignons rouges</div><div class="seed-origin">Ferme Gaïa · 500g</div><div class="seed-footer"><span class="seed-price">3,00 $</span><button class="seed-add">+</button></div></div></div>
+      </div>
+
+      <div class="section-label">🌱 Semences — Ferme Gaïa</div>
+      <div class="seed-grid">
+        <div class="seed-card"><div class="seed-img" style="background:#fde8d8;">🍅</div><div class="seed-info"><div class="seed-name">Tomate Brandywine</div><div class="seed-origin">Ferme Gaïa · semences</div><div class="seed-footer"><span class="seed-price">4,50 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#d8f0e0;">🌿</div><div class="seed-info"><div class="seed-name">Basilic Grand Vert</div><div class="seed-origin">Ferme Gaïa · semences</div><div class="seed-footer"><span class="seed-price">3,25 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fff3e0;">🎃</div><div class="seed-info"><div class="seed-name">Courge Butternut</div><div class="seed-origin">Ferme Gaïa · semences</div><div class="seed-footer"><span class="seed-price">3,75 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#e8f5e9;">🥬</div><div class="seed-info"><div class="seed-name">Laitue Butterhead</div><div class="seed-origin">Ferme Gaïa · semences</div><div class="seed-footer"><span class="seed-price">2,75 $</span><button class="seed-add">+</button></div></div></div>
+      </div>
+
+      <div class="section-label">🧺 Produits du terroir</div>
+      <div class="seed-grid">
+        <div class="seed-card"><div class="seed-img" style="background:#f5f0e0;">🌾</div><div class="seed-info"><div class="seed-name">Farine blé bio</div><div class="seed-origin">Ferme Gaïa · 1kg</div><div class="seed-footer"><span class="seed-price">3,50 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#e8e0d0;">🧂</div><div class="seed-info"><div class="seed-name">Gros sel de mer</div><div class="seed-origin">Ferme Gaïa · 500g</div><div class="seed-footer"><span class="seed-price">2,25 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fff8e1;">🍯</div><div class="seed-info"><div class="seed-name">Miel des ruches</div><div class="seed-origin">Ferme Gaïa · 250ml</div><div class="seed-footer"><span class="seed-price">8,00 $</span><button class="seed-add">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fde8d8;">🍎</div><div class="seed-info"><div class="seed-name">Pectine naturelle</div><div class="seed-origin">Ferme Gaïa · 100g</div><div class="seed-footer"><span class="seed-price">4,00 $</span><button class="seed-add">+</button></div></div></div>
+      </div>
+
+      <div style="margin-top:8px;padding:14px;background:linear-gradient(135deg,#f5ede0,#ede0c8);border-radius:14px;border-left:4px solid var(--gold);margin-bottom:16px;">
+        <div style="font-size:0.68rem;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">🚚 Livraison locale</div>
+        <div style="font-size:0.85rem;color:var(--text);">Livraison gratuite à partir de <strong>25 $</strong> d'achat · Région de Montréal et environs 🌿</div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT LISTE -->
+  <div class="screen" id="s-troc">
+    <div class="troc-header">
+      <div class="troc-greeting">TrocVert 🔄 · Gratuit</div>
+      <div class="troc-title">Échanges près de toi</div>
+      <div class="troc-search"><span>🔍</span><span>Chercher légumes, semences...</span></div>
+    </div>
+    <div class="troc-cats">
+      <div class="troc-cat active" onclick="filterTroc(this)">Tout</div>
+      <div class="troc-cat" onclick="filterTroc(this)">🥕 Légumes</div>
+      <div class="troc-cat" onclick="filterTroc(this)">🌱 Semences</div>
+      <div class="troc-cat" onclick="filterTroc(this)">🌿 Herbes</div>
+      <div class="troc-cat" onclick="filterTroc(this)">🍓 Fruits</div>
+    </div>
+    <div class="troc-banner">
+      <div>
+        <div class="troc-banner-label">En ce moment</div>
+        <div class="troc-banner-title">Saison des tomates ! 🍅</div>
+        <div class="troc-banner-sub">47 annonces près de chez vous</div>
+      </div>
+    </div>
+    <div class="troc-grid">
+      <div class="troc-card" style="background:#e8f5e9;" onclick="go('s-troc-detail')">
+        <div class="troc-card-emoji">🍅</div>
+        <div class="troc-card-title">Tomates cerises</div>
+        <div class="troc-card-seek">🔄 Basilic ou courgettes</div>
+        <div class="troc-card-footer"><div class="troc-dist">📍 1.2 km</div></div>
+        <div class="troc-stars-sm">⭐⭐⭐⭐⭐ (12)</div>
+      </div>
+      <div class="troc-card" style="background:#fff3e0;" onclick="go('s-troc-detail')">
+        <div class="troc-card-emoji">🎃</div>
+        <div class="troc-card-title">Semences courge</div>
+        <div class="troc-card-seek">🔄 Semences poivrons</div>
+        <div class="troc-card-footer"><div class="troc-dist">📍 3.4 km</div></div>
+        <div class="troc-stars-sm">⭐⭐⭐⭐⭐ (8)</div>
+      </div>
+      <div class="troc-card" style="background:#f3e5f5;" onclick="go('s-troc-detail')">
+        <div class="troc-card-emoji">🌿</div>
+        <div class="troc-card-title">Herbes fraîches</div>
+        <div class="troc-card-seek">🔄 Légumes feuilles</div>
+        <div class="troc-card-footer"><div class="troc-dist">📍 0.8 km</div></div>
+        <div class="troc-stars-sm">⭐⭐⭐⭐ (23)</div>
+      </div>
+      <div class="troc-card" style="background:#e0f7fa;" onclick="go('s-troc-detail')">
+        <div class="troc-card-emoji">🌱</div>
+        <div class="troc-card-title">Semences tomates</div>
+        <div class="troc-card-seek">🔄 Semences laitue</div>
+        <div class="troc-card-footer"><div class="troc-dist">📍 2.3 km</div></div>
+        <div class="troc-stars-sm">⭐⭐⭐⭐⭐ (15)</div>
+      </div>
+      <div class="troc-card" style="background:#fce4ec;" onclick="go('s-troc-detail')">
+        <div class="troc-card-emoji">🥔</div>
+        <div class="troc-card-title">Pommes de terre</div>
+        <div class="troc-card-seek">🔄 Carottes</div>
+        <div class="troc-card-footer"><div class="troc-dist">📍 5.1 km</div></div>
+        <div class="troc-stars-sm">⭐⭐⭐⭐ (6)</div>
+      </div>
+      <div class="troc-card" style="background:#ede7f6;" onclick="go('s-troc-detail')">
+        <div class="troc-card-emoji">🫐</div>
+        <div class="troc-card-title">Bleuets du jardin</div>
+        <div class="troc-card-seek">🔄 Fraises</div>
+        <div class="troc-card-footer"><div class="troc-dist">📍 7.2 km</div></div>
+        <div class="troc-stars-sm">⭐⭐⭐⭐ (4)</div>
+      </div>
+    </div>
+    <div style="padding:10px 18px;flex-shrink:0;background:var(--beige);border-top:1px solid var(--beige-md);">
+      <button class="btn-primary troc-green" onclick="go('s-troc-publish')">＋ Publier une annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item active troc-active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT DÉTAIL -->
+  <div class="screen" id="s-troc-detail">
+    <div style="background:#e8f5e9;flex-shrink:0;position:relative;">
+      <button onclick="go('s-troc')" style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;z-index:2;">←</button>
+      <div class="troc-detail-hero">
+        <div class="troc-detail-emoji">🍅</div>
+        <div class="troc-detail-title">Tomates cerises</div>
+        <span class="troc-detail-cat">Légumes</span>
+      </div>
+    </div>
+    <div style="padding:14px 18px;flex:1;overflow-y:auto;">
+      <div class="troc-info-card">
+        <div class="troc-user-row">
+          <div class="troc-avatar">🧑‍🌾</div>
+          <div>
+            <div class="troc-username">Marie L.</div>
+            <div class="troc-user-stars">⭐⭐⭐⭐⭐ · 12 évaluations</div>
+          </div>
+        </div>
+        <div class="troc-location">📍 Montréal, Rosemont · 1.2 km</div>
+      </div>
+      <div class="troc-seek-card">
+        <div class="troc-seek-label">🔄 Cherche en échange</div>
+        <div class="troc-seek-value">Basilic frais ou courgettes du jardin</div>
+      </div>
+      <div class="troc-tip">💡 Conseil sécurité — rencontrez-vous dans un lieu public comme un marché ou un parc. Dites à un proche où vous allez.</div>
+      <button class="troc-btn troc-btn-primary">💬 Contacter Marie</button>
+      <button class="troc-btn troc-btn-ghost" style="border:2px solid var(--troc);background:white;color:var(--troc);">🗺️ Voir sur la carte</button>
+      <button class="troc-btn troc-btn-report" style="border:1px solid #eee;background:transparent;color:#bbb;font-size:0.78rem;padding:10px;">⚑ Signaler cette annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item active troc-active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT ÉVALUER -->
+  <div class="screen" id="s-troc-rate">
+    <div class="troc-header">
+      <div class="troc-greeting">Échange complété 🎉</div>
+      <div class="troc-title">Évalue ton échange</div>
+    </div>
+    <div style="padding:24px 18px;flex:1;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="font-size:3rem;margin-bottom:8px;">🧑‍🌾</div>
+        <div style="font-weight:700;color:var(--text);font-size:1rem;margin-bottom:4px;">Marie L.</div>
+        <div style="font-size:0.82rem;color:var(--text-lt);">Tomates cerises ↔ Basilic</div>
+      </div>
+      <div style="background:var(--white);border-radius:16px;padding:20px;text-align:center;box-shadow:0 2px 10px rgba(74,55,40,0.07);margin-bottom:16px;">
+        <div style="font-size:0.82rem;color:var(--text-lt);margin-bottom:14px;font-weight:700;">Comment s'est passé l'échange ?</div>
+        <div class="star-rating" id="stars" style="justify-content:center;">
+          <span class="star" onclick="rateStar(1)">⭐</span>
+          <span class="star" onclick="rateStar(2)">⭐</span>
+          <span class="star" onclick="rateStar(3)">⭐</span>
+          <span class="star" onclick="rateStar(4)">⭐</span>
+          <span class="star" onclick="rateStar(5)">⭐</span>
+        </div>
+        <div id="star-label" style="font-size:0.78rem;color:var(--text-lt);margin-top:10px;height:18px;"></div>
+      </div>
+      <div style="background:var(--white);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(74,55,40,0.07);margin-bottom:16px;">
+        <div style="font-size:0.68rem;color:var(--text-lt);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:700;">Un commentaire ?</div>
+        <textarea style="width:100%;background:var(--beige);border:none;border-radius:10px;padding:10px;font-family:'Lato',sans-serif;font-size:0.85rem;color:var(--text);resize:none;height:70px;outline:none;" placeholder="Très sympa, les tomates étaient délicieuses !"></textarea>
+      </div>
+      <button class="btn-primary troc-green">✅ Envoyer mon évaluation</button>
+      <button class="btn-ghost" onclick="go('s-troc')">Passer</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item active troc-active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+  <!-- TROCVERT PUBLIER -->
+  <div class="screen" id="s-troc-publish">
+    <div class="troc-header">
+      <button onclick="go('s-troc')" style="background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;color:white;margin-bottom:8px;">←</button>
+      <div class="troc-greeting">Nouvelle annonce</div>
+      <div class="troc-title">Publier un échange</div>
+    </div>
+    <div style="padding:18px;flex:1;overflow-y:auto;">
+      <div class="troc-field">
+        <label>Ce que j'offre</label>
+        <input type="text" placeholder="Ex: Tomates cerises, basilic...">
+      </div>
+      <div class="troc-field">
+        <label>Catégorie</label>
+        <select><option>🥕 Légumes</option><option>🌱 Semences</option><option>🌿 Herbes</option><option>🍓 Fruits</option></select>
+      </div>
+      <div class="troc-field">
+        <label>Ce que je cherche en échange</label>
+        <input type="text" placeholder="Ex: Courgettes, poivrons...">
+      </div>
+      <div class="troc-field">
+        <label>Quantité disponible</label>
+        <input type="text" placeholder="Ex: 1 kg, 3 plants, une poignée...">
+      </div>
+      <div class="troc-field">
+        <label>Description</label>
+        <textarea placeholder="Décris tes légumes, variété, comment les contacter..."></textarea>
+      </div>
+      <div style="background:var(--troc-bg);border-radius:12px;padding:12px 14px;margin-bottom:16px;border-left:3px solid var(--troc);font-size:0.78rem;color:var(--troc);line-height:1.5;">
+        🌱 Ton annonce sera visible par tous les membres de ta région. Après l'échange, vous pourrez vous laisser des étoiles !
+      </div>
+      <button class="btn-primary troc-green">🌿 Publier mon annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('s-home')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('s-budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('s-diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item" onclick="go('s-journal')"><div class="nav-icon">📔</div><div class="nav-label">Journal</div></div>
+      <div class="nav-item active troc-active" onclick="go('s-troc')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="device-label">Racines v3 — par Ferme Gaïa · TrocVert gratuit 🔄</div>
+
+<script>
+  function go(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById(id).scrollTop = 0;
+  }
+  function selectOb(el, next) {
+    el.closest('.ob-options').querySelectorAll('.ob-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    setTimeout(() => go(next), 320);
+  }
+  function checkMission(cid, mid) {
+    document.getElementById(cid).classList.toggle('checked');
+    document.getElementById(mid).classList.toggle('done');
+  }
+  function filterTroc(el) {
+    document.querySelectorAll('.troc-cat').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+  const starLabels = ['😕 Pas génial', '😐 Correct', '🙂 Bien', '😊 Très bien', '🤩 Parfait !'];
+  function rateStar(n) {
+    document.querySelectorAll('.star').forEach((s,i) => s.classList.toggle('active', i < n));
+    document.getElementById('star-label').textContent = starLabels[n-1];
+  }
+</script>
+</body>
+</html>
