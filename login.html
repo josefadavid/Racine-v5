@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Connexion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="icons">●●● WiFi 🔋</span>
+  </div>
+
+  <!-- ======================================================
+       PAGE : LOGIN / SPLASH
+       Fichier : login.html
+       Liens vers : ob1.html (nouveau compte) | accueil.html (déjà membre)
+       ====================================================== -->
+  <div class="screen active" id="s-splash">
+    <div class="splash-leaf">🌿</div>
+    <div class="splash-title">Racines</div>
+    <div class="splash-sub">par Ferme Gaïa</div>
+    <div class="splash-tagline">"Cultive, cuisine, économise et échange. On t'accompagne à chaque étape."</div>
+    <div class="splash-stats">
+      <div class="splash-stat"><div class="splash-stat-num">3 240</div><div class="splash-stat-lbl">Membres</div></div>
+      <div class="splash-stat"><div class="splash-stat-num">52 k$</div><div class="splash-stat-lbl">Économisés</div></div>
+      <div class="splash-stat"><div class="splash-stat-num">847</div><div class="splash-stat-lbl">Échanges</div></div>
+    </div>
+    <button class="btn btn-olive" onclick="go('ob1')" style="margin-bottom:10px;">Commencer — c'est gratuit</button>
+    <button class="btn btn-ghost" onclick="go('accueil')">J'ai déjà un compte</button>
+  </div>
+
+</div>
+<div class="device-label">Racines v5 — Login</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

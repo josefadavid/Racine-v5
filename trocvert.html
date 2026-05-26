@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — TrocVert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+
+  <!-- PAGE : TROCVERT — LISTE — trocvert.html -->
+  <div class="screen active" id="s-troc">
+    <div class="troc-header">
+      <div class="troc-greeting">TrocVert 🔄 · Gratuit</div>
+      <div class="troc-title">Échanges près de toi</div>
+      <div class="troc-search"><span>🔍</span><span>Chercher légumes, semences...</span></div>
+    </div>
+    <div class="troc-cats">
+      <div class="troc-cat active" onclick="filterCat(this)">Tout</div>
+      <div class="troc-cat" onclick="filterCat(this)">🥕 Légumes</div>
+      <div class="troc-cat" onclick="filterCat(this)">🌱 Semences</div>
+      <div class="troc-cat" onclick="filterCat(this)">🌿 Herbes</div>
+      <div class="troc-cat" onclick="filterCat(this)">🍓 Fruits</div>
+      <div class="troc-cat" onclick="filterCat(this)">🫙 Conserves</div>
+    </div>
+    <div class="troc-activity-strip">
+      <div class="troc-mini-msg" onclick="toast('Conversation Marie')"><div class="troc-mini-icon">💬</div><div class="troc-mini-txt"><strong>Marie L.</strong> · 2 msg</div></div>
+      <div class="troc-mini-msg" onclick="toast('Match !')"><div class="troc-mini-icon">✨</div><div class="troc-mini-txt"><strong>Match</strong> · Jean cherche basilic</div></div>
+      <div class="troc-mini-msg" onclick="toast('Échange demain')"><div class="troc-mini-icon">⏰</div><div class="troc-mini-txt"><strong>Demain 17h</strong> · Atwater</div></div>
+    </div>
+    <div class="troc-banner">
+      <div><div class="troc-banner-label">En ce moment</div><div class="troc-banner-title">Saison des fraises ! 🍓</div><div class="troc-banner-sub">47 annonces près de vous · +18% cette semaine</div></div>
+    </div>
+    <div class="troc-grid">
+      <div class="troc-card featured" style="background:#fce4ec;" onclick="go('trocvert-detail')"><div class="troc-featured-ribbon">★ COUP DE ❤️</div><div class="troc-card-emoji">🍓</div><div class="troc-card-title">Fraises Albion</div><div class="troc-card-seek">🔄 Basilic ou tomates</div><div class="troc-dist">📍 0.6 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (28)</div></div>
+      <div class="troc-card" style="background:#e8f5e9;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🍅</div><div class="troc-card-title">Tomates cerises</div><div class="troc-card-seek">🔄 Basilic ou courgettes</div><div class="troc-dist">📍 1.2 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (12)</div></div>
+      <div class="troc-card" style="background:#fff3e0;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🎃</div><div class="troc-card-title">Semences courge</div><div class="troc-card-seek">🔄 Semences poivrons</div><div class="troc-dist">📍 3.4 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (8)</div></div>
+      <div class="troc-card" style="background:#f3e5f5;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🌿</div><div class="troc-card-title">Herbes fraîches</div><div class="troc-card-seek">🔄 Légumes feuilles</div><div class="troc-dist">📍 0.8 km</div><div class="troc-stars-sm">⭐⭐⭐⭐ (23)</div></div>
+      <div class="troc-card" style="background:#ede7f6;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🫐</div><div class="troc-card-title">Bleuets du jardin</div><div class="troc-card-seek">🔄 Fraises</div><div class="troc-dist">📍 7.2 km</div><div class="troc-stars-sm">⭐⭐⭐⭐ (4)</div></div>
+      <div class="troc-card" style="background:#fff8e1;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🫙</div><div class="troc-card-title">Confiture maison</div><div class="troc-card-seek">🔄 Pots vides ou fruits</div><div class="troc-dist">📍 1.8 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (19)</div></div>
+      <div class="troc-card" style="background:#fde0d8;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🌶️</div><div class="troc-card-title">Piments forts</div><div class="troc-card-seek">🔄 Tomates ou ail</div><div class="troc-dist">📍 6.0 km</div><div class="troc-stars-sm">⭐⭐⭐⭐ (7)</div></div>
+      <div class="troc-card" style="background:#f5e8d8;" onclick="go('trocvert-detail')"><div class="troc-card-emoji">🍯</div><div class="troc-card-title">Miel de ruche</div><div class="troc-card-seek">🔄 Sirop d'érable</div><div class="troc-dist">📍 9.5 km</div><div class="troc-stars-sm">⭐⭐⭐⭐⭐ (31)</div></div>
+    </div>
+    <div style="padding:10px 18px;flex-shrink:0;background:var(--beige);border-top:1px solid var(--beige-md);">
+      <button class="btn btn-troc" onclick="go('trocvert-publier')">＋ Publier une annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — TrocVert</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — DIY & Cuisine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+  <!-- PAGE : DIY & CUISINE — diy.html -->
+  <div class="screen active" id="s-diy">
+    <div class="page-header"><div class="greeting">Faire soi-même</div><div class="title">DIY & Cuisine</div><div class="subtitle">Avec ta récolte · Zéro gaspillage</div></div>
+    <div class="page-body">
+      <div class="section-label">Mes favoris</div>
+      <div class="fav-strip">
+        <div class="fav-card" onclick="toast('Recette ouverte')"><div class="fav-emoji">🍞</div><div class="fav-name">Pain sourdough</div></div>
+        <div class="fav-card" onclick="toast('Recette ouverte')"><div class="fav-emoji">🫙</div><div class="fav-name">Ketchup aux fruits</div></div>
+        <div class="fav-card" onclick="toast('Recette ouverte')"><div class="fav-emoji">🥒</div><div class="fav-name">Cornichons</div></div>
+        <div class="fav-card" onclick="toast('Recette ouverte')"><div class="fav-emoji">🍓</div><div class="fav-name">Conf. fraises</div></div>
+        <div class="fav-card" onclick="toast('Recette ouverte')"><div class="fav-emoji">🌿</div><div class="fav-name">Pesto basilic</div></div>
+      </div>
+      <div class="cats">
+        <div class="cat-btn active">Tout</div><div class="cat-btn">🫙 Conserves</div><div class="cat-btn">🍞 Boulangerie</div>
+        <div class="cat-btn">🍝 Pâtes</div><div class="cat-btn">🥒 Fermentation</div><div class="cat-btn">🍓 Confitures</div><div class="cat-btn">🧀 Laitiers</div>
+      </div>
+      <div class="section-label">Suggéré avec ta récolte actuelle</div>
+      <div class="recipe-card" onclick="toast('Recette ouverte')">
+        <div class="recipe-img" style="background:#fde8d8;">🫙<div class="recipe-badge">Avec tes tomates</div></div>
+        <div class="recipe-info"><div class="recipe-title">Sauce tomate maison en conserve</div><div class="recipe-desc">Transforme tes 2,3 kg de tomates en sauce pour tout l'hiver.</div>
+        <div class="recipe-meta-row"><span class="recipe-chip diff-mid">Moyen</span><span class="recipe-chip">⏱ 2h</span><span class="recipe-chip">🫙 8 pots</span><span class="recipe-chip diff-easy">💰 +45 $</span></div>
+        <div class="recipe-footer"><div class="recipe-rating">⭐ 4,8 · 234 avis</div><button class="recipe-shop" onclick="event.stopPropagation();go('boutique')">🌾 Ingrédients</button></div></div>
+      </div>
+      <div class="recipe-card" onclick="toast('Recette ouverte')">
+        <div class="recipe-img" style="background:#f5f0e0;">🍞<div class="recipe-badge gold">Populaire</div></div>
+        <div class="recipe-info"><div class="recipe-title">Pain sourdough au levain</div><div class="recipe-desc">Fais ton propre pain pour 1,20 $ vs 6-8 $ en boulangerie.</div>
+        <div class="recipe-meta-row"><span class="recipe-chip diff-hard">Avancé</span><span class="recipe-chip">⏱ 3h actif</span><span class="recipe-chip">🍞 1 pain</span><span class="recipe-chip diff-easy">💰 +5,55 $</span></div>
+        <div class="recipe-footer"><div class="recipe-rating">⭐ 4,9 · 487 avis</div><button class="recipe-shop" onclick="event.stopPropagation();go('boutique')">🌾 Ingrédients</button></div></div>
+      </div>
+      <div class="recipe-card" onclick="toast('Recette ouverte')">
+        <div class="recipe-img" style="background:#e8f0e0;">🥒<div class="recipe-badge">Fermentation</div></div>
+        <div class="recipe-info"><div class="recipe-title">Légumes lacto-fermentés</div><div class="recipe-desc">Kimchi, choucroute, cornichons — conserve tes surplus sans cuisson.</div>
+        <div class="recipe-meta-row"><span class="recipe-chip diff-easy">Facile</span><span class="recipe-chip">⏱ 30 min</span><span class="recipe-chip">🫙 3 pots</span><span class="recipe-chip diff-easy">💰 +20 $</span></div>
+        <div class="recipe-footer"><div class="recipe-rating">⭐ 4,7 · 156 avis</div><button class="recipe-shop" onclick="event.stopPropagation();go('boutique')">🌾 Ingrédients</button></div></div>
+      </div>
+      <div class="recipe-card" onclick="toast('Recette ouverte')">
+        <div class="recipe-img" style="background:#d8f0e0;">🌿<div class="recipe-badge">Avec ton basilic</div></div>
+        <div class="recipe-info"><div class="recipe-title">Pesto basilic classique</div><div class="recipe-desc">Ton basilic est prêt ! Pesto frais en 10 min · se congèle dans des bacs à glaçons.</div>
+        <div class="recipe-meta-row"><span class="recipe-chip diff-easy">Facile</span><span class="recipe-chip">⏱ 10 min</span><span class="recipe-chip">🫙 2 pots</span><span class="recipe-chip diff-easy">💰 +14 $</span></div>
+        <div class="recipe-footer"><div class="recipe-rating">⭐ 4,9 · 312 avis</div><button class="recipe-shop" onclick="event.stopPropagation();go('boutique')">🌾 Ingrédients</button></div></div>
+      </div>
+      <div class="recipe-card" onclick="toast('Recette ouverte')">
+        <div class="recipe-img" style="background:#fce4ec;">🍓<div class="recipe-badge gold">Saison</div></div>
+        <div class="recipe-info"><div class="recipe-title">Confiture fraises &amp; basilic</div><div class="recipe-desc">Twist québécois sur la classique. Combine deux récoltes du jardin.</div>
+        <div class="recipe-meta-row"><span class="recipe-chip diff-mid">Moyen</span><span class="recipe-chip">⏱ 1h</span><span class="recipe-chip">🫙 5 pots</span><span class="recipe-chip diff-easy">💰 +18,75 $</span></div>
+        <div class="recipe-footer"><div class="recipe-rating">⭐ 4,8 · 89 avis</div><button class="recipe-shop" onclick="event.stopPropagation();go('boutique')">🌾 Ingrédients</button></div></div>
+      </div>
+      <div class="recipe-card" onclick="toast('Recette ouverte')">
+        <div class="recipe-img" style="background:#fff8e1;">🧀<div class="recipe-badge gold">Nouveau</div></div>
+        <div class="recipe-info"><div class="recipe-title">Ricotta maison en 20 min</div><div class="recipe-desc">Lait + citron + sel. Idéal pour lasagnes et tartes.</div>
+        <div class="recipe-meta-row"><span class="recipe-chip diff-easy">Facile</span><span class="recipe-chip">⏱ 20 min</span><span class="recipe-chip">🧀 400 g</span><span class="recipe-chip diff-easy">💰 +6 $</span></div>
+        <div class="recipe-footer"><div class="recipe-rating">⭐ 4,6 · 67 avis</div><button class="recipe-shop" onclick="event.stopPropagation();go('boutique')">🌾 Ingrédients</button></div></div>
+      </div>
+      <div class="section-label">Il te manque des ingrédients ?</div>
+      <div class="manque-card">
+        <div class="manque-title">🌾 Disponible chez Ferme Gaïa</div>
+        <div class="manque-item"><div class="manque-name">🌾 Farine de blé bio · 1kg</div><button class="manque-btn" onclick="go('boutique')">3,50 $ →</button></div>
+        <div class="manque-item"><div class="manque-name">🧂 Gros sel de mer · 500g</div><button class="manque-btn" onclick="go('boutique')">2,25 $ →</button></div>
+        <div class="manque-item"><div class="manque-name">🍎 Pectine naturelle · 100g</div><button class="manque-btn" onclick="go('boutique')">4,00 $ →</button></div>
+        <div class="manque-item"><div class="manque-name">🍯 Miel cru · 250ml</div><button class="manque-btn" onclick="go('boutique')">8,00 $ →</button></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item active" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — DIY & Cuisine</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

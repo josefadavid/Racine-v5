@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Accueil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="icons">●●● WiFi 🔋</span>
+  </div>
+
+  <!-- ======================================================
+       PAGE : ACCUEIL
+       Fichier : accueil.html
+       ====================================================== -->
+  <div class="screen active" id="s-home">
+    <div class="home-header">
+      <div class="home-top">
+        <div>
+          <div style="font-size:0.68rem;color:var(--beige-dk);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Bonjour Marie 🌱</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--beige);">Semaine 3 · Mai 2026</div>
+        </div>
+        <div class="avatar-btn" onclick="go('profil')">🧑‍🌾</div>
+      </div>
+      <div class="header-pills">
+        <span class="streak-pill">🔥 18 jours</span>
+        <span class="weather-pill">🌤️ 18°C · Montréal</span>
+        <span class="season-pill">🌷 Printemps</span>
+      </div>
+    </div>
+
+    <div class="page-body">
+      <div class="quick-row">
+        <div class="quick-tile"><div class="quick-tile-icon">🎯</div><div class="quick-tile-val">3/5</div><div class="quick-tile-lbl">Missions</div></div>
+        <div class="quick-tile"><div class="quick-tile-icon">💧</div><div class="quick-tile-val">Fait</div><div class="quick-tile-lbl">Arrosage</div></div>
+        <div class="quick-tile"><div class="quick-tile-icon">🌱</div><div class="quick-tile-val">6</div><div class="quick-tile-lbl">Plants</div></div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-label">Tes missions cette semaine</div>
+        <span class="section-link" onclick="toast('Toutes les missions')">Voir tout →</span>
+      </div>
+
+      <div class="mission-card urgent" id="m0">
+        <div class="mission-top"><div class="mission-tag mission-tag-danger">⏰ Aujourd'hui · Urgent</div><div class="mission-check" id="c0" onclick="checkMission('c0','m0')">✓</div></div>
+        <div class="mission-text">Rentre tes plants sensibles ce soir</div>
+        <div class="mission-sub">Gel possible cette nuit · 5°C prévus · 10 min</div>
+      </div>
+      <div class="mission-card" id="m1">
+        <div class="mission-top"><div class="mission-tag">🌱 Semis · Mardi</div><div class="mission-check" id="c1" onclick="checkMission('c1','m1')">✓</div></div>
+        <div class="mission-text">Prépare tes pots de semis de tomates</div>
+        <div class="mission-sub">Terreau + graines Brandywine + lumière indirecte · 20 min</div>
+      </div>
+      <div class="mission-card" id="m2">
+        <div class="mission-top"><div class="mission-tag">💧 Arrosage · Mercredi</div><div class="mission-check" id="c2" onclick="checkMission('c2','m2')">✓</div></div>
+        <div class="mission-text">Arrose tes herbes aromatiques</div>
+        <div class="mission-sub">Basilic, thym, ciboulette · 5 min</div>
+      </div>
+      <div class="mission-card" id="m3">
+        <div class="mission-top"><div class="mission-tag mission-tag-terre">🌿 Transplant · Jeudi</div><div class="mission-check" id="c3" onclick="checkMission('c3','m3')">✓</div></div>
+        <div class="mission-text">Repique tes plants de basilic en pleine terre</div>
+        <div class="mission-sub">Espace 20 cm entre chaque plant · 25 min</div>
+      </div>
+      <div class="mission-card done">
+        <div class="mission-top"><div class="mission-tag mission-tag-gold">🍞 DIY · Dimanche</div><div class="mission-check checked">✓</div></div>
+        <div class="mission-text">Faire ton premier pain sourdough</div>
+        <div class="mission-sub">✅ Complété hier — Bravo !</div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-label">Mes plants actifs</div>
+        <span class="section-link" onclick="go('calendrier')">Calendrier →</span>
+      </div>
+      <div class="plant-strip">
+        <div class="plant-card"><div class="plant-emoji" style="background:#fde8d8;">🍅</div><div class="plant-name">Tomate Brandywine</div><div class="plant-stage">Jeune plant</div><div class="plant-bar"><div class="plant-bar-fill" style="width:32%;"></div></div><div class="plant-days">Jour 24 / 75</div></div>
+        <div class="plant-card"><div class="plant-emoji" style="background:#d8f0e0;">🌿</div><div class="plant-name">Basilic Gd Vert</div><div class="plant-stage">À récolter</div><div class="plant-bar"><div class="plant-bar-fill" style="width:78%;background:var(--gold);"></div></div><div class="plant-days" style="color:var(--gold);">Jour 23 / 30 🌟</div></div>
+        <div class="plant-card"><div class="plant-emoji" style="background:#d4f0d4;">🥬</div><div class="plant-name">Laitue Butter.</div><div class="plant-stage">Croissance</div><div class="plant-bar"><div class="plant-bar-fill" style="width:60%;"></div></div><div class="plant-days">Jour 27 / 45</div></div>
+        <div class="plant-card"><div class="plant-emoji" style="background:#e8f5e9;">🥒</div><div class="plant-name">Concombre lib.</div><div class="plant-stage">Semis</div><div class="plant-bar"><div class="plant-bar-fill" style="width:13%;"></div></div><div class="plant-days">Jour 8 / 60</div></div>
+        <div class="plant-card"><div class="plant-emoji" style="background:#fde0d8;">🌶️</div><div class="plant-name">Poivron jalap.</div><div class="plant-stage">Floraison</div><div class="plant-bar"><div class="plant-bar-fill" style="width:55%;"></div></div><div class="plant-days">Jour 50 / 90</div></div>
+        <div class="plant-card"><div class="plant-emoji" style="background:#fce4ec;">🍓</div><div class="plant-name">Fraises Albion</div><div class="plant-stage">Fruits</div><div class="plant-bar"><div class="plant-bar-fill" style="width:72%;background:var(--gold);"></div></div><div class="plant-days" style="color:var(--gold);">Jour 86 / 120</div></div>
+      </div>
+
+      <div class="section-label">TrocVert — Près de toi 🔄</div>
+      <div style="background:linear-gradient(135deg,#1b5e20,var(--troc));border-radius:14px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;cursor:pointer;position:relative;overflow:hidden;" onclick="go('trocvert')">
+        <div style="position:absolute;right:-8px;top:-8px;font-size:4.5rem;opacity:0.08;">🔄</div>
+        <div>
+          <div style="font-size:0.63rem;color:rgba(242,234,216,0.75);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;">Gratuit · Échange de surplus</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--beige);font-weight:700;">12 annonces près de toi</div>
+          <div style="font-size:0.68rem;color:var(--beige-md);margin-top:3px;">2 nouveaux messages →</div>
+        </div>
+        <div style="font-size:2rem;">🥕</div>
+      </div>
+
+      <div class="section-label">Tes économies ce mois</div>
+      <div style="background:linear-gradient(135deg,var(--olive),#4a5c2a);border-radius:14px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;cursor:pointer;" onclick="go('budget')">
+        <div>
+          <div style="font-size:0.63rem;color:rgba(242,234,216,0.75);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;">Économies réalisées</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--beige);font-weight:700;">43,20 $</div>
+          <div style="font-size:0.68rem;color:var(--beige-md);margin-top:2px;">+12% vs mois passé →</div>
+        </div>
+        <div style="font-size:2rem;">🌿</div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-label">La communauté</div>
+        <span class="section-link" onclick="toast('Communauté')">Voir →</span>
+      </div>
+      <div class="community-strip">
+        <div class="community-card"><div class="community-row"><div class="community-avatar">👩‍🌾</div><div><div class="community-name">Anne-Sophie · Laval</div><div class="community-meta">il y a 2h · 🌿</div></div></div><div class="community-text">"Mes 8 plants de tomates sont en fleurs ! Hâte de la première récolte 🍅"</div></div>
+        <div class="community-card"><div class="community-row"><div class="community-avatar">🧑‍🌾</div><div><div class="community-name">Jean-François · Sherbrooke</div><div class="community-meta">il y a 5h · 🍞</div></div></div><div class="community-text">"3 pains sourdough cette semaine. Économie : 18$. Pas pire pour un débutant !"</div></div>
+        <div class="community-card"><div class="community-row"><div class="community-avatar">👩‍🦰</div><div><div class="community-name">Geneviève · Québec</div><div class="community-meta">hier · 🫙</div></div></div><div class="community-text">"12 pots de ketchup aux fruits faits avec les pommes du voisin. Trop bon !"</div></div>
+      </div>
+
+      <div class="section-label">Mon journal · cette semaine</div>
+      <div class="photo-strip">
+        <div class="photo-thumb photo-add" onclick="go('journal')">＋</div>
+        <div class="photo-thumb" style="background:#d4e8c2;" onclick="go('journal')">🌱</div>
+        <div class="photo-thumb" style="background:#e8d5c2;" onclick="go('journal')">🍅</div>
+        <div class="photo-thumb" style="background:#e8e8c2;" onclick="go('journal')">🌿</div>
+        <div class="photo-thumb" style="background:#e8c2c2;" onclick="go('journal')">🍓</div>
+        <div class="photo-thumb" style="background:#f5f0e0;" onclick="go('journal')">🍞</div>
+      </div>
+
+      <div class="section-label" style="margin-top:14px;">Conseil du jour</div>
+      <div class="tip-card">
+        <div style="font-size:1.2rem;">🌡️</div>
+        <div><div class="tip-title">Alerte météo · Québec</div><div class="tip-text">Gel possible cette nuit (5°C). Rentre tes plants sensibles ou couvre-les avec une toile. Tomates, basilic, poivrons surtout. 🌱</div></div>
+      </div>
+    </div>
+
+    <!-- Navigation bas de page — "active" = Accueil -->
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+</div>
+<div class="device-label">Racines v5 — Accueil</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

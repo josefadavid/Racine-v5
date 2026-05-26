@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Publier une annonce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+  <!-- PAGE : TROCVERT PUBLIER — trocvert-publier.html -->
+  <div class="screen active" id="s-troc-publish">
+    <div class="troc-header">
+      <button onclick="goBack()" style="background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.9rem;color:white;margin-bottom:8px;">←</button>
+      <div class="troc-greeting">Nouvelle annonce</div>
+      <div class="troc-title">Publier un échange</div>
+    </div>
+    <div style="padding:16px 18px;flex:1;overflow-y:auto;">
+      <div class="troc-field"><label>Ce que j'offre</label><input type="text" placeholder="Ex: Tomates cerises, basilic..."></div>
+      <div class="troc-field"><label>Catégorie</label><select><option>🥕 Légumes</option><option>🌱 Semences</option><option>🌿 Herbes</option><option>🍓 Fruits</option></select></div>
+      <div class="troc-field"><label>Ce que je cherche en échange</label><input type="text" placeholder="Ex: Courgettes, poivrons..."></div>
+      <div class="troc-field"><label>Quantité disponible</label><input type="text" placeholder="Ex: 1 kg, 3 plants..."></div>
+      <div class="troc-field"><label>Description</label><textarea placeholder="Variété, fraîcheur, comment vous rejoindre..."></textarea></div>
+      <div style="background:var(--troc-bg);border-radius:12px;padding:11px 13px;margin-bottom:14px;border-left:3px solid var(--troc);font-size:0.74rem;color:var(--troc);line-height:1.5;">🌱 Ton annonce sera visible par tous les membres de ta région. Après l'échange, vous pourrez vous laisser des étoiles !</div>
+      <button class="btn btn-troc" onclick="toast('Annonce publiée 🌿');setTimeout(()=>go('trocvert'),900)">🌿 Publier mon annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — Publier</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

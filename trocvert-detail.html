@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Détail annonce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+  <!-- PAGE : TROCVERT DÉTAIL — trocvert-detail.html -->
+  <div class="screen active" id="s-troc-detail">
+    <div style="background:#e8f5e9;flex-shrink:0;position:relative;">
+      <button onclick="goBack()" style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.85);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;z-index:2;">←</button>
+      <div style="padding:36px 24px 20px;text-align:center;">
+        <div style="font-size:4.5rem;margin-bottom:8px;">🍅</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);margin-bottom:6px;">Tomates cerises</div>
+        <span style="background:var(--troc);color:white;border-radius:20px;padding:3px 12px;font-size:0.7rem;font-weight:700;">Légumes</span>
+      </div>
+    </div>
+    <div style="padding:14px 18px;flex:1;overflow-y:auto;">
+      <div class="troc-info-card">
+        <div class="troc-user-row">
+          <div style="font-size:1.9rem;">🧑‍🌾</div>
+          <div><div class="troc-username">Marie L. <span class="troc-verified">✓ Vérifiée</span></div><div class="troc-user-stars">⭐⭐⭐⭐⭐ · 12 évaluations · 87% taux de réponse</div></div>
+        </div>
+        <div class="troc-location">📍 Montréal, Rosemont · 1.2 km</div>
+      </div>
+      <div class="troc-desc-card">
+        <div class="troc-desc-label">À propos de l'offre</div>
+        <div class="troc-desc-text">Récolte du matin de mes plants Sungold et Sweet 100 cultivés sur balcon ensoleillé. Environ 1 kg disponible. Très sucrées 🍅 Je peux livrer aux abords du métro Beaubien.</div>
+        <div class="troc-detail-meta"><span>🌱 Sans pesticide</span><span>📦 1 kg dispo</span><span>📅 il y a 3h</span></div>
+      </div>
+      <div class="troc-seek-card">
+        <div class="troc-seek-label">🔄 Cherche en échange</div>
+        <div style="font-size:0.86rem;color:var(--text);">Basilic frais (bouquet) ou courgettes du jardin. Ouverte aussi à du pain maison 🍞</div>
+      </div>
+      <div class="troc-tip">💡 Rencontrez-vous dans un lieu public — marché, parc. Dites à un proche où vous allez.</div>
+      <button class="troc-btn troc-btn-primary" onclick="toast('Message envoyé 💬');setTimeout(()=>go('trocvert-evaluer'),900)">💬 Contacter Marie</button>
+      <button class="troc-btn troc-btn-ghost" onclick="toast('Carte ouverte 🗺️')">🗺️ Voir sur la carte</button>
+      <button class="troc-btn troc-btn-report" onclick="toast('Annonce signalée')">⚑ Signaler cette annonce</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav active" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — Détail annonce</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

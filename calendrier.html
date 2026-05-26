@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Calendrier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+
+  <!-- PAGE : CALENDRIER — calendrier.html -->
+  <div class="screen active" id="s-cal">
+    <div class="cal-header"><div class="cal-greeting">Calendrier 📅</div><div class="cal-title">Semis & Récoltes · Québec</div></div>
+    <div class="month-strip">
+      <div class="month-btn">Jan</div><div class="month-btn">Fév</div><div class="month-btn">Mar</div><div class="month-btn">Avr</div>
+      <div class="month-btn active">Mai</div><div class="month-btn">Juin</div><div class="month-btn">Juil</div><div class="month-btn">Août</div>
+      <div class="month-btn">Sep</div><div class="month-btn">Oct</div><div class="month-btn">Nov</div><div class="month-btn">Déc</div>
+    </div>
+    <div class="page-body" style="overflow-y:auto;flex:1;">
+      <div class="cal-stats">
+        <div class="cal-stat"><div class="cal-stat-num">6</div><div class="cal-stat-lbl">Plants actifs</div></div>
+        <div class="cal-stat"><div class="cal-stat-num">3</div><div class="cal-stat-lbl">À transplanter</div></div>
+        <div class="cal-stat"><div class="cal-stat-num">2</div><div class="cal-stat-lbl">À récolter</div></div>
+      </div>
+      <div class="alerte-card" style="margin-top:4px;">
+        <div style="font-size:1.3rem;">⚠️</div>
+        <div><div class="alerte-title">Alerte Mai — Québec</div><div class="alerte-text">Derniers semis intérieurs avant transplantation. Risque de gel jusqu'au 15 mai !</div></div>
+      </div>
+      <div class="section-label">Ma timeline de saison</div>
+      <div class="gantt-card">
+        <div class="gantt-row"><div class="gantt-name">🍅 Tomates</div><div class="gantt-track"><div class="gantt-fill" style="left:30%;width:60%;"></div></div></div>
+        <div class="gantt-row"><div class="gantt-name">🌿 Basilic</div><div class="gantt-track"><div class="gantt-fill harvest" style="left:25%;width:35%;"></div></div></div>
+        <div class="gantt-row"><div class="gantt-name">🥬 Laitue</div><div class="gantt-track"><div class="gantt-fill" style="left:20%;width:30%;"></div></div></div>
+        <div class="gantt-row"><div class="gantt-name">🥒 Concombre</div><div class="gantt-track"><div class="gantt-fill" style="left:35%;width:50%;"></div></div></div>
+        <div class="gantt-row"><div class="gantt-name">🌶️ Poivrons</div><div class="gantt-track"><div class="gantt-fill" style="left:25%;width:65%;"></div></div></div>
+        <div class="gantt-row"><div class="gantt-name">🍓 Fraises</div><div class="gantt-track"><div class="gantt-fill harvest" style="left:30%;width:55%;"></div></div></div>
+        <div style="font-size:0.55rem;color:var(--text-lt);text-align:center;margin-top:6px;letter-spacing:1px;">Avr · Mai · Juin · Juil · Août · Sep</div>
+      </div>
+      <div class="section-label">À faire en mai</div>
+      <div class="semis-card"><div class="semis-emoji">🍅</div><div><div class="semis-name">Tomates</div><div class="semis-desc">Transplanter à l'extérieur après le 20 mai. Prépare le sol 2 semaines avant.</div><span class="semis-tag tag-transplant">Transplantation</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🥒</div><div><div class="semis-name">Concombres</div><div class="semis-desc">Semer directement en pleine terre. Attendre que le sol soit à 18°C minimum.</div><span class="semis-tag tag-semis">Semis extérieur</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🌿</div><div><div class="semis-name">Basilic</div><div class="semis-desc">Démarrer à l'intérieur encore 2 semaines. Très sensible au froid.</div><span class="semis-tag tag-interieur">À l'intérieur</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🥬</div><div><div class="semis-name">Laitue &amp; Épinards</div><div class="semis-desc">Peuvent être semés dès maintenant — résistent aux légères gelées.</div><span class="semis-tag tag-semis">Semis extérieur</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🎃</div><div><div class="semis-name">Courges &amp; Citrouilles</div><div class="semis-desc">Démarrer à l'intérieur maintenant pour transplanter fin mai.</div><span class="semis-tag tag-interieur">À l'intérieur</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🥕</div><div><div class="semis-name">Carottes &amp; Radis</div><div class="semis-desc">Semer en rangs directement. Éclaircir à 5 cm après germination.</div><span class="semis-tag tag-semis">Semis extérieur</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🌽</div><div><div class="semis-name">Maïs sucré</div><div class="semis-desc">Attendre fin mai. Le sol doit être à 15°C minimum pour la germination.</div><span class="semis-tag tag-semis">Semis extérieur</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🫘</div><div><div class="semis-name">Haricots verts</div><div class="semis-desc">Semer après le dernier gel, en rangs de 60 cm. Récolte continue.</div><span class="semis-tag tag-semis">Semis extérieur</span></div></div>
+      <div class="section-label">Prochaines récoltes</div>
+      <div class="semis-card"><div class="semis-emoji">🌿</div><div><div class="semis-name">Basilic Grand Vert</div><div class="semis-desc">Plant #1 prêt à récolter dans 5-7 jours. Pince les fleurs pour prolonger.</div><span class="semis-tag tag-recolte">Cette semaine</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🍓</div><div><div class="semis-name">Fraises Albion</div><div class="semis-desc">Premiers fruits mûrs ! Récolte quotidienne dès maintenant.</div><span class="semis-tag tag-recolte">Récolte continue</span></div></div>
+      <div class="semis-card"><div class="semis-emoji">🥬</div><div><div class="semis-name">Épinards printaniers</div><div class="semis-desc">Si semés en avril, prêts à couper dès fin mai. Récolte feuille par feuille.</div><span class="semis-tag tag-recolte">Bientôt</span></div></div>
+      <div style="background:var(--cal-bg);border-radius:14px;padding:13px;margin-top:4px;margin-bottom:16px;border-left:4px solid var(--cal);">
+        <div style="font-size:0.62rem;color:var(--cal);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">📍 Adapté à ta région</div>
+        <div style="font-size:0.8rem;color:var(--text);line-height:1.5;">Calendrier basé sur la zone 5b du Québec (région de Montréal). Dernières gelées typiques : 10-15 mai. Premières gelées d'automne : début octobre.</div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav active" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — Calendrier</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

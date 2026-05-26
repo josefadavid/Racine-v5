@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+
+  <!-- PAGE : BOUTIQUE — boutique.html -->
+  <div class="screen active" id="s-boutique">
+    <div class="page-header"><div class="greeting">Boutique</div><div class="title">Semences & Produits</div><div class="subtitle">Ferme Gaïa · Bio · Local · Québec</div></div>
+    <div class="page-body">
+      <div class="promo-card"><div><div class="promo-title">🌱 Promo printemps · -20%</div><div class="promo-sub">Tout le rayon semences hâtives — jusqu'au 31 mai</div></div><div style="font-size:2rem;">🌾</div></div>
+
+      <div class="section-row"><div class="section-label">🏆 Bestsellers de la semaine</div><span class="section-link" onclick="toast('Tous les bestsellers')">Voir tout →</span></div>
+      <div class="bestseller-strip">
+        <div class="bestseller-card" onclick="toast('Détails produit')"><div class="bestseller-img" style="background:#fde8d8;">🍅<span class="bestseller-rank">#1</span></div><div class="bestseller-info"><div class="bestseller-name">Tomate Brandywine</div><div class="bestseller-rating">⭐ 4,9 · 142 avis</div><div class="bestseller-price">4,50 $</div></div></div>
+        <div class="bestseller-card" onclick="toast('Détails produit')"><div class="bestseller-img" style="background:#d8f0e0;">🌿<span class="bestseller-rank">#2</span></div><div class="bestseller-info"><div class="bestseller-name">Basilic Grand Vert</div><div class="bestseller-rating">⭐ 4,8 · 98 avis</div><div class="bestseller-price">3,25 $</div></div></div>
+        <div class="bestseller-card" onclick="toast('Détails produit')"><div class="bestseller-img" style="background:#fff8e1;">🍯<span class="bestseller-rank">#3</span></div><div class="bestseller-info"><div class="bestseller-name">Miel des ruches</div><div class="bestseller-rating">⭐ 5,0 · 56 avis</div><div class="bestseller-price">8,00 $</div></div></div>
+        <div class="bestseller-card" onclick="toast('Détails produit')"><div class="bestseller-img" style="background:#f5f0e0;">🌾<span class="bestseller-rank">#4</span></div><div class="bestseller-info"><div class="bestseller-name">Farine blé bio</div><div class="bestseller-rating">⭐ 4,7 · 87 avis</div><div class="bestseller-price">3,50 $</div></div></div>
+      </div>
+
+      <div class="section-label">🎁 Kits prêts à planter</div>
+      <div class="bundle-card" onclick="toast('Kit débutant')">
+        <div><div class="bundle-tag">🌱 Kit débutant</div><div class="bundle-title">Mon premier potager</div><div class="bundle-meta">6 semences · terreau · 4 pots · guide PDF</div></div>
+        <div><div class="bundle-orig">25,00 $</div><div class="bundle-price">19,99 $</div></div>
+      </div>
+      <div class="bundle-card" onclick="toast('Kit boulangerie')" style="background:linear-gradient(135deg,#f5f0e0,#e8d5a0);border-left-color:var(--gold);">
+        <div><div class="bundle-tag" style="color:var(--gold);">🍞 Kit boulangerie</div><div class="bundle-title">Maître du sourdough</div><div class="bundle-meta">Farine 2kg · sel · levain · banneton · guide</div></div>
+        <div><div class="bundle-orig">42,00 $</div><div class="bundle-price" style="color:var(--gold);">34,50 $</div></div>
+      </div>
+
+      <div class="section-label">🥦 Légumes frais — Ferme Gaïa</div>
+      <div class="seed-grid">
+        <div class="seed-card"><div class="seed-img" style="background:#d4f0d4;">🥬</div><div class="seed-info"><div class="seed-name">Laitue mélangée</div><div class="seed-origin">Ferme Gaïa · 200g</div><div class="seed-rating">⭐ 4,8</div><div class="seed-footer"><span class="seed-price">3,75 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fde8d8;">🍅</div><div class="seed-info"><div class="seed-name">Tomates cerises</div><div class="seed-origin">Ferme Gaïa · 250g</div><div class="seed-rating">⭐ 4,9</div><div class="seed-footer"><span class="seed-price">4,25 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#e8f5e9;">🥒</div><div class="seed-info"><div class="seed-name">Concombres lib.</div><div class="seed-origin">Ferme Gaïa · 3 pcs</div><div class="seed-rating">⭐ 4,6</div><div class="seed-footer"><span class="seed-price">3,50 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fce4ec;">🍓</div><div class="seed-info"><div class="seed-name">Fraises Albion</div><div class="seed-origin">Ferme Gaïa · 250g</div><div class="seed-rating">⭐ 4,9</div><div class="seed-footer"><span class="seed-price">5,50 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+      </div>
+
+      <div class="section-label">🌱 Semences hâtives — Idéales pour Québec</div>
+      <div class="seed-grid">
+        <div class="seed-card"><div class="seed-tag-corner gold">−20%</div><div class="seed-img" style="background:#fde8d8;">🍅</div><div class="seed-info"><div class="seed-name">Tomate Brandywine</div><div class="seed-origin">30 graines</div><div class="seed-rating">⭐ 4,9</div><div class="seed-footer"><span class="seed-price">3,60 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#d8f0e0;">🌿</div><div class="seed-info"><div class="seed-name">Basilic Grand Vert</div><div class="seed-origin">50 graines</div><div class="seed-rating">⭐ 4,8</div><div class="seed-footer"><span class="seed-price">3,25 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#fff3e0;">🎃</div><div class="seed-info"><div class="seed-name">Courge Butternut</div><div class="seed-origin">15 graines</div><div class="seed-rating">⭐ 4,7</div><div class="seed-footer"><span class="seed-price">3,75 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-tag-corner">Bio</div><div class="seed-img" style="background:#fff3e0;">🥕</div><div class="seed-info"><div class="seed-name">Carotte Nantaise</div><div class="seed-origin">200 graines</div><div class="seed-rating">⭐ 4,8</div><div class="seed-footer"><span class="seed-price">2,95 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+      </div>
+
+      <div class="section-label">🧺 Produits du terroir</div>
+      <div class="seed-grid">
+        <div class="seed-card"><div class="seed-img" style="background:#f5f0e0;">🌾</div><div class="seed-info"><div class="seed-name">Farine blé bio</div><div class="seed-origin">Ferme Gaïa · 1kg</div><div class="seed-rating">⭐ 4,7</div><div class="seed-footer"><span class="seed-price">3,50 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-tag-corner gold">★ Top</div><div class="seed-img" style="background:#fff8e1;">🍯</div><div class="seed-info"><div class="seed-name">Miel des ruches</div><div class="seed-origin">Ferme Gaïa · 250ml</div><div class="seed-rating">⭐ 5,0</div><div class="seed-footer"><span class="seed-price">8,00 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#f0e8d8;">🌰</div><div class="seed-info"><div class="seed-name">Sirop d'érable</div><div class="seed-origin">Mauricie · 540ml</div><div class="seed-rating">⭐ 4,9</div><div class="seed-footer"><span class="seed-price">14,50 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+        <div class="seed-card"><div class="seed-img" style="background:#f5e8d8;">🧈</div><div class="seed-info"><div class="seed-name">Beurre baratte</div><div class="seed-origin">Charlevoix · 250g</div><div class="seed-rating">⭐ 4,7</div><div class="seed-footer"><span class="seed-price">7,25 $</span><button class="seed-add" onclick="toast('Ajouté 🛒')">+</button></div></div></div>
+      </div>
+
+      <div style="margin-top:8px;padding:13px;background:linear-gradient(135deg,#f5ede0,#ede0c8);border-radius:14px;border-left:4px solid var(--gold);margin-bottom:16px;">
+        <div style="font-size:0.62rem;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">🚚 Livraison locale</div>
+        <div style="font-size:0.82rem;color:var(--text);line-height:1.5;">Livraison gratuite dès <strong>25 $</strong> · Région Montréal, Laval, Rive-Sud · Cueillette à la ferme à Saint-Hyacinthe 🌿</div>
+      </div>
+    </div>
+
+    <!-- Navigation — "active" = Boutique -->
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item active" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — Boutique</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

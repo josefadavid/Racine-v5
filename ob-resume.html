@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Ton profil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="icons">●●● WiFi 🔋</span>
+  </div>
+
+  <!-- ======================================================
+       PAGE : ONBOARDING — Résumé / Profil créé
+       Fichier : ob-resume.html
+       Lien vers : accueil.html
+       ====================================================== -->
+  <div class="screen active" id="s-ob-resume">
+    <div class="ob-header">
+      <div class="ob-step">C'est parti ! 🌱</div>
+      <div class="ob-progress">
+        <div class="ob-dot done"></div>
+        <div class="ob-dot done"></div>
+        <div class="ob-dot done"></div>
+      </div>
+      <div class="ob-question">Voici ton profil de jardinier·ère</div>
+    </div>
+    <div class="ob-body">
+      <div class="ob-summary"><div class="ob-summary-label">Ton espace</div><div class="ob-summary-value" id="res-espace">—</div></div>
+      <div class="ob-summary"><div class="ob-summary-label">Ta motivation</div><div class="ob-summary-value" id="res-raison">—</div></div>
+      <div class="ob-summary"><div class="ob-summary-label">Par où commencer</div><div class="ob-summary-value" id="res-debut">—</div></div>
+
+      <div class="section-label">Tes premières missions</div>
+      <div class="ob-mission-preview">
+        <div class="ob-mission-emoji">🌱</div>
+        <div class="ob-mission-info">
+          <div class="ob-mission-title">Prépare ton premier semis</div>
+          <div class="ob-mission-meta">Tomates Brandywine · 20 min</div>
+        </div>
+        <div class="ob-mission-when">Demain</div>
+      </div>
+      <div class="ob-mission-preview">
+        <div class="ob-mission-emoji">🌿</div>
+        <div class="ob-mission-info">
+          <div class="ob-mission-title">Plante ton basilic</div>
+          <div class="ob-mission-meta">Croissance rapide · 15 min</div>
+        </div>
+        <div class="ob-mission-when">Cette sem.</div>
+      </div>
+      <div class="ob-mission-preview">
+        <div class="ob-mission-emoji">🍞</div>
+        <div class="ob-mission-info">
+          <div class="ob-mission-title">Lance ton premier levain</div>
+          <div class="ob-mission-meta">Pour pain sourdough · 10 min</div>
+        </div>
+        <div class="ob-mission-when">Sem. 2</div>
+      </div>
+
+      <div style="background:var(--troc-bg);border-radius:14px;padding:14px;margin-bottom:16px;margin-top:14px;border-left:4px solid var(--troc);">
+        <div style="font-size:0.73rem;color:var(--troc);font-weight:700;margin-bottom:4px;">🌿 Ton plan est prêt !</div>
+        <div style="font-size:0.8rem;color:var(--text);line-height:1.5;">On a personnalisé tes missions, ton calendrier de semis et tes recettes selon ton profil. Estimation : 380 $ d'économies cette saison.</div>
+      </div>
+      <button class="btn btn-olive" onclick="go('accueil')">🚀 Découvrir mon app</button>
+    </div>
+  </div>
+
+</div>
+<div class="device-label">Racines v5 — Profil créé</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script>fillResume();</script>
+</body>
+</html>

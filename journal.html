@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+  <!-- PAGE : JOURNAL — journal.html -->
+  <div class="screen active" id="s-journal">
+    <div class="page-header"><div class="greeting">Mon Journal</div><div class="title">23 entrées · Saison 2026</div></div>
+    <div class="page-body">
+      <div class="journal-stats">
+        <div class="j-stat"><div class="j-stat-num">18</div><div class="j-stat-lbl">Photos</div></div>
+        <div class="j-stat"><div class="j-stat-num">23</div><div class="j-stat-lbl">Entrées</div></div>
+        <div class="j-stat"><div class="j-stat-num">9</div><div class="j-stat-lbl">Tags</div></div>
+      </div>
+      <button class="btn btn-olive" style="margin-bottom:14px;">📸 Ajouter une photo + note</button>
+
+      <div class="journal-entry">
+        <div class="entry-date-row"><div class="entry-date">Hier · 16 mai 2026</div><span class="entry-mood">🥲 Reconnaissante</span></div>
+        <div class="entry-img" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">🍓</div>
+        <div class="entry-note">Premières fraises de la saison ! Albion, plantées en avril. Plus sucrées que tout ce que j'ai goûté au marché. Ma fille en a mangé direct au jardin 🍓</div>
+        <div class="entry-tags"><span class="etag terre">Fraises</span><span class="etag olive">Récolte</span><span class="etag">Saison 1</span></div>
+      </div>
+      <div class="journal-entry">
+        <div class="entry-date-row"><div class="entry-date">Mardi 14 mai 2026</div><span class="entry-mood">😊 Fière</span></div>
+        <div class="entry-img" style="background:linear-gradient(135deg,#d4e8c2,#a8d18d);">🌱</div>
+        <div class="entry-note">Mes premiers semis de basilic ont germé ! Deux petites feuilles. Hâte de faire mon premier pesto maison 🌿</div>
+        <div class="entry-tags"><span class="etag olive">Basilic</span><span class="etag">Germination</span><span class="etag">Semaine 1</span></div>
+      </div>
+      <div class="journal-entry">
+        <div class="entry-date-row"><div class="entry-date">Dimanche 11 mai 2026</div><span class="entry-mood">🙌 Accomplie</span></div>
+        <div class="entry-img" style="background:linear-gradient(135deg,#f5f0e0,#e8d5a0);">🍞</div>
+        <div class="entry-note">Premier pain sourdough réussi ! Croustillant, et ça coûte 1,20 $ vs 7 $ en boulangerie. Mon levain s'appelle Maurice maintenant 🥖</div>
+        <div class="entry-tags"><span class="etag gold">Sourdough</span><span class="etag">DIY</span><span class="etag olive">Économie</span></div>
+      </div>
+      <div class="journal-entry">
+        <div class="entry-date-row"><div class="entry-date">Vendredi 9 mai 2026</div><span class="entry-mood">🤝 Connectée</span></div>
+        <div class="entry-img" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7);">🔄</div>
+        <div class="entry-note">Premier troc TrocVert ! Marie de Rosemont a échangé ses tomates contre mon basilic. On a jasé 20 min au parc Maisonneuve 🌿</div>
+        <div class="entry-tags"><span class="etag">TrocVert</span><span class="etag terre">Premier troc</span><span class="etag olive">Communauté</span></div>
+      </div>
+      <div class="journal-entry">
+        <div class="entry-date-row"><div class="entry-date">Lundi 5 mai 2026</div><span class="entry-mood">😅 Apprenante</span></div>
+        <div class="entry-img" style="background:linear-gradient(135deg,#fde8d8,#f5b591);">🍅</div>
+        <div class="entry-note">Gelée surprise cette nuit. J'ai perdu 2 plants de tomates 😭. Note pour l'an prochain : attendre la mi-mai pour tout sortir.</div>
+        <div class="entry-tags"><span class="etag">Échec</span><span class="etag">Tomates</span><span class="etag">Leçon apprise</span></div>
+      </div>
+      <div class="journal-entry">
+        <div class="entry-date-row"><div class="entry-date">Mercredi 30 avril 2026</div><span class="entry-mood">✨ Excitée</span></div>
+        <div class="entry-img" style="background:linear-gradient(135deg,#f3e5f5,#ce93d8);">🌱</div>
+        <div class="entry-note">Premier jour avec Racines ! J'ai commandé un kit débutant chez Ferme Gaïa : semences, terreau, pots. Le facteur m'a dit "c'est le printemps en boîte ça !" 📦</div>
+        <div class="entry-tags"><span class="etag terre">Début</span><span class="etag">Kit débutant</span><span class="etag olive">Saison 1</span></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — Journal</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

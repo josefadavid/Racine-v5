@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Bienvenue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="icons">●●● WiFi 🔋</span>
+  </div>
+
+  <!-- ======================================================
+       PAGE : ONBOARDING — Étape 2/3
+       Fichier : ob2.html
+       Lien vers : ob3.html
+       ====================================================== -->
+  <div class="screen active" id="s-ob2">
+    <div class="ob-header">
+      <div class="ob-step">Étape 2 sur 3</div>
+      <div class="ob-progress">
+        <div class="ob-dot done"></div>
+        <div class="ob-dot active"></div>
+        <div class="ob-dot"></div>
+      </div>
+      <div class="ob-question">Qu'est-ce qui t'a amené ici ?</div>
+    </div>
+    <div class="ob-body">
+      <div class="ob-options">
+        <div class="ob-option" onclick="selectOb(this,'ob3','raison','💰 Réduire l\'épicerie')">
+          <div class="ob-icon">💰</div>
+          <div><div class="ob-text">Réduire ma facture d'épicerie</div><div class="ob-sub">L'alimentation coûte trop cher</div></div>
+        </div>
+        <div class="ob-option" onclick="selectOb(this,'ob3','raison','🌱 Être autonome')">
+          <div class="ob-icon">🌱</div>
+          <div><div class="ob-text">Devenir plus autonome</div><div class="ob-sub">Produire ma propre nourriture</div></div>
+        </div>
+        <div class="ob-option" onclick="selectOb(this,'ob3','raison','👨‍👩‍👧 Pour ma famille')">
+          <div class="ob-icon">👨‍👩‍👧</div>
+          <div><div class="ob-text">Pour ma famille</div><div class="ob-sub">Mieux manger, apprendre ensemble</div></div>
+        </div>
+        <div class="ob-option" onclick="selectOb(this,'ob3','raison','🌍 Pour l\'environnement')">
+          <div class="ob-icon">🌍</div>
+          <div><div class="ob-text">Pour l'environnement</div><div class="ob-sub">Réduire mon empreinte</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="device-label">Racines v5 — Étape 2/3</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

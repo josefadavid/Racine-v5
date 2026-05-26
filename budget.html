@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Budget</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="icons">●●● WiFi 🔋</span>
+  </div>
+
+  <!-- ======================================================
+       PAGE : BUDGET
+       Fichier : budget.html
+       ====================================================== -->
+  <div class="screen active" id="s-budget">
+    <div class="page-header">
+      <div class="greeting">Mes économies</div>
+      <div class="title">Mai 2026</div>
+      <div class="subtitle">Vs prix épicerie habituelle</div>
+    </div>
+    <div class="page-body">
+
+      <div class="savings-hero">
+        <div class="savings-amount">127,40 $</div>
+        <div class="savings-label">économisés cette saison</div>
+        <div class="savings-sub">🎉 Tu économises l'équivalent de 25 repas !</div>
+      </div>
+
+      <div class="section-label">Tendance · 6 derniers mois</div>
+      <div class="trend-bars">
+        <div class="trend-col"><div class="trend-bar" style="height:25%;"></div><div class="trend-lbl">Déc</div></div>
+        <div class="trend-col"><div class="trend-bar" style="height:32%;"></div><div class="trend-lbl">Jan</div></div>
+        <div class="trend-col"><div class="trend-bar" style="height:18%;"></div><div class="trend-lbl">Fév</div></div>
+        <div class="trend-col"><div class="trend-bar" style="height:48%;"></div><div class="trend-lbl">Mar</div></div>
+        <div class="trend-col"><div class="trend-bar" style="height:65%;"></div><div class="trend-lbl">Avr</div></div>
+        <div class="trend-col"><div class="trend-bar current" style="height:85%;"></div><div class="trend-lbl" style="color:var(--gold);">Mai</div></div>
+      </div>
+
+      <div class="section-label">Comparaison épicerie vs maison</div>
+      <div class="compare-wrap">
+        <div style="font-size:0.66rem;color:var(--text-lt);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Tomates ce mois-ci</div>
+        <div class="compare-row"><div class="compare-label">🍅 Maison</div><div class="compare-bar-wrap"><div class="compare-bar" style="width:30%;background:var(--olive);"></div></div><div class="compare-val" style="color:var(--olive);">2,10 $</div></div>
+        <div class="compare-row"><div class="compare-label" style="color:var(--text-lt);">→ Épicerie</div><div class="compare-bar-wrap"><div class="compare-bar" style="width:100%;background:var(--beige-dk);"></div></div><div class="compare-val" style="color:var(--text-lt);">7,50 $</div></div>
+        <div style="text-align:right;font-size:0.7rem;color:var(--olive);font-weight:700;margin-top:4px;">Tu économises 5,40 $ 🌱</div>
+      </div>
+      <div class="compare-wrap">
+        <div style="font-size:0.66rem;color:var(--text-lt);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Pain artisanal</div>
+        <div class="compare-row"><div class="compare-label">🍞 Maison</div><div class="compare-bar-wrap"><div class="compare-bar" style="width:18%;background:var(--olive);"></div></div><div class="compare-val" style="color:var(--olive);">1,20 $</div></div>
+        <div class="compare-row"><div class="compare-label" style="color:var(--text-lt);">→ Boulangerie</div><div class="compare-bar-wrap"><div class="compare-bar" style="width:100%;background:var(--beige-dk);"></div></div><div class="compare-val" style="color:var(--text-lt);">6,75 $</div></div>
+        <div style="text-align:right;font-size:0.7rem;color:var(--olive);font-weight:700;margin-top:4px;">+5,55 $ par pain 🌾</div>
+      </div>
+
+      <div class="section-label">Détail de tes cultures &amp; DIY</div>
+      <div class="card">
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🍅</div><div><div class="budget-name">Tomates cerises</div><div class="budget-qty">2,3 kg · 6 plants</div></div></div><div class="budget-saving">+17,25 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🌿</div><div><div class="budget-name">Basilic frais</div><div class="budget-qty">8 bouquets · 4 plants</div></div></div><div class="budget-saving">+12,00 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🥬</div><div><div class="budget-name">Laitue feuille</div><div class="budget-qty">6 têtes · continue</div></div></div><div class="budget-saving">+9,00 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🌶️</div><div><div class="budget-name">Poivrons</div><div class="budget-qty">12 pcs · 2 plants</div></div></div><div class="budget-saving">+8,40 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🍓</div><div><div class="budget-name">Fraises</div><div class="budget-qty">450 g</div></div></div><div class="budget-saving">+6,75 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🍞</div><div><div class="budget-name">Pain sourdough</div><div class="budget-qty">4 pains maison</div></div></div><div class="budget-saving">+22,20 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🫙</div><div><div class="budget-name">Confitures fraises</div><div class="budget-qty">5 pots 250ml</div></div></div><div class="budget-saving">+18,75 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🥒</div><div><div class="budget-name">Cornichons fermentés</div><div class="budget-qty">3 pots · sans cuisson</div></div></div><div class="budget-saving">+12,50 $</div></div>
+        <div class="budget-row"><div class="budget-item-left"><div class="budget-emoji">🔄</div><div><div class="budget-name">Échanges TrocVert</div><div class="budget-qty">4 trocs ce mois</div></div></div><div class="budget-saving">+20,55 $</div></div>
+      </div>
+      <div class="add-btn">＋ Ajouter une récolte</div>
+
+      <div class="section-label">Retour sur investissement</div>
+      <div class="roi-card">
+        <div class="roi-title">💰 Bilan saison</div>
+        <div class="roi-row"><span>Semences &amp; intrants</span><span style="color:#a85a2c;">−24,50 $</span></div>
+        <div class="roi-row"><span>Investissement initial (kit)</span><span style="color:#a85a2c;">−29,99 $</span></div>
+        <div class="roi-row"><span>Économies totales</span><span style="color:var(--olive);font-weight:700;">+127,40 $</span></div>
+        <div class="roi-row total"><span>Profit net</span><span>+72,91 $</span></div>
+      </div>
+      <div class="tip-card">
+        <div style="font-size:1.2rem;">📈</div>
+        <div><div class="tip-title">Projection saison</div><div class="tip-text">À ce rythme, tu économiseras environ 380 $ cette saison. Ta meilleure catégorie : DIY conserves. 🌿</div></div>
+      </div>
+    </div>
+
+    <!-- Navigation — "active" = Budget -->
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item active" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+
+</div>
+<div class="device-label">Racines v5 — Budget</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

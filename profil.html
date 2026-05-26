@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racines v5 — Profil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
+  <!-- PAGE : PROFIL — profil.html -->
+  <div class="screen active" id="s-profil">
+    <div class="profil-hero">
+      <button class="profil-edit-btn">✏️</button>
+      <div class="profil-avatar">🧑‍🌾</div>
+      <div class="profil-name">Marie Tremblay</div>
+      <div class="profil-region">📍 Montréal, Rosemont · Membre depuis mars 2026</div>
+      <div class="profil-level">🌿 Niveau 4 · Jardinière</div>
+    </div>
+    <div class="profil-stats">
+      <div class="profil-stat"><div class="profil-stat-num">12</div><div class="profil-stat-label">Échanges</div></div>
+      <div class="profil-stat"><div class="profil-stat-num">⭐ 4.8</div><div class="profil-stat-label">Évaluation</div></div>
+      <div class="profil-stat"><div class="profil-stat-num">380$</div><div class="profil-stat-label">Économisé</div></div>
+    </div>
+    <div class="profil-section">
+      <div class="section-row"><div class="section-label" style="margin:0;">🏅 Mes badges</div><span class="section-link" onclick="toast('Tous les badges')">Voir tout →</span></div>
+      <div class="badge-row">
+        <div class="badge-item" onclick="toast('🌱 Premier semis')"><div class="badge-icon">🌱</div><div class="badge-name">1er semis</div></div>
+        <div class="badge-item" onclick="toast('🍞 Premier pain')"><div class="badge-icon">🍞</div><div class="badge-name">1er pain</div></div>
+        <div class="badge-item" onclick="toast('🔄 Premier troc')"><div class="badge-icon">🔄</div><div class="badge-name">1er troc</div></div>
+        <div class="badge-item" onclick="toast('🔥 7 jours')"><div class="badge-icon">🔥</div><div class="badge-name">7 jours</div></div>
+        <div class="badge-item" onclick="toast('🍅 Récolteuse')"><div class="badge-icon">🍅</div><div class="badge-name">Récolteuse</div></div>
+        <div class="badge-item locked" onclick="toast('🫙 5 recettes à débloquer')"><div class="badge-icon">🫙</div><div class="badge-name">Conserves</div></div>
+        <div class="badge-item locked" onclick="toast('💯 100$ à débloquer')"><div class="badge-icon">💯</div><div class="badge-name">100$ club</div></div>
+        <div class="badge-item locked" onclick="toast('🌳 1 an à débloquer')"><div class="badge-icon">🌳</div><div class="badge-name">1 an</div></div>
+      </div>
+
+      <div class="section-label">📜 Activité récente</div>
+      <div class="activity-list">
+        <div class="activity-row"><div class="activity-icon">🍓</div><div style="flex:1;"><div class="activity-text">Première récolte de fraises (+6,75 $)</div><div class="activity-time">Hier · 14h32</div></div></div>
+        <div class="activity-row"><div class="activity-icon">🔄</div><div style="flex:1;"><div class="activity-text">Échange complété avec Marie L.</div><div class="activity-time">Vendredi · 17h05</div></div></div>
+        <div class="activity-row"><div class="activity-icon">🍞</div><div style="flex:1;"><div class="activity-text">Pain sourdough complété · ⭐ 4 étoiles</div><div class="activity-time">11 mai · 11h20</div></div></div>
+        <div class="activity-row"><div class="activity-icon">🛒</div><div style="flex:1;"><div class="activity-text">Commande Boutique livrée (38,75 $)</div><div class="activity-time">8 mai · 09h15</div></div></div>
+      </div>
+
+      <div class="section-label">Mes annonces TrocVert actives</div>
+      <div class="profil-annonce"><div class="profil-annonce-emoji">🍅</div><div><div class="profil-annonce-title">Tomates cerises</div><div class="profil-annonce-sub">🔄 Cherche : Basilic ou courgettes</div></div><div class="profil-annonce-status">Active</div></div>
+      <div class="profil-annonce"><div class="profil-annonce-emoji">🌿</div><div><div class="profil-annonce-title">Basilic Grand Vert</div><div class="profil-annonce-sub">🔄 Cherche : Herbes variées</div></div><div class="profil-annonce-status">Active</div></div>
+
+      <div class="section-label">Mon jardin</div>
+      <div class="profil-row" onclick="go('journal')"><div class="profil-row-icon">📔</div><div class="profil-row-text"><div class="profil-row-title">Journal de culture</div><div class="profil-row-sub">23 entrées cette saison</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row" onclick="go('calendrier')"><div class="profil-row-icon">📅</div><div class="profil-row-text"><div class="profil-row-title">Mon calendrier de semis</div><div class="profil-row-sub">6 cultures actives · 3 à transplanter</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row" onclick="go('budget')"><div class="profil-row-icon">💰</div><div class="profil-row-text"><div class="profil-row-title">Mes économies</div><div class="profil-row-sub">127,40 $ cette saison · +12% vs avr.</div></div><div class="profil-row-arrow">›</div></div>
+
+      <div class="section-label">Paramètres</div>
+      <div class="profil-row"><div class="profil-row-icon">📍</div><div class="profil-row-text"><div class="profil-row-title">Ma région</div><div class="profil-row-sub">Montréal, Rosemont · Zone 5b</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">🔔</div><div class="profil-row-text"><div class="profil-row-title">Notifications</div><div class="profil-row-sub">Alertes semis, messages TrocVert, météo</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">🌐</div><div class="profil-row-text"><div class="profil-row-title">Langue</div><div class="profil-row-sub">Français (Québec)</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row" onclick="go('boutique')"><div class="profil-row-icon">🌾</div><div class="profil-row-text"><div class="profil-row-title">Ferme Gaïa</div><div class="profil-row-sub">Voir la boutique et les produits</div></div><div class="profil-row-arrow">›</div></div>
+      <div class="profil-row"><div class="profil-row-icon">❓</div><div class="profil-row-text"><div class="profil-row-title">Aide &amp; support</div><div class="profil-row-sub">FAQ, contact, conditions</div></div><div class="profil-row-arrow">›</div></div>
+
+      <div style="padding:14px 0 24px;">
+        <button class="btn btn-ghost" style="color:#c62828;border-color:#ffcdd2;" onclick="if(confirm('Se déconnecter ?')){go('login');toast('À bientôt 🌿');}">Se déconnecter</button>
+        <div style="text-align:center;font-size:0.6rem;color:var(--text-lt);margin-top:12px;letter-spacing:1px;">Racines v5 · par Ferme Gaïa</div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="go('accueil')"><div class="nav-icon">🏠</div><div class="nav-label">Accueil</div></div>
+      <div class="nav-item" onclick="go('budget')"><div class="nav-icon">💰</div><div class="nav-label">Budget</div></div>
+      <div class="nav-item" onclick="go('diy')"><div class="nav-icon">🍞</div><div class="nav-label">DIY</div></div>
+      <div class="nav-item cal-nav" onclick="go('calendrier')"><div class="nav-icon">📅</div><div class="nav-label">Calendrier</div></div>
+      <div class="nav-item" onclick="go('boutique')"><div class="nav-icon">🌾</div><div class="nav-label">Boutique</div></div>
+      <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
+    </div>
+  </div>
+</div>
+<div class="device-label">Racines v5 — Profil</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
