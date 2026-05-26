@@ -2,14 +2,12 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Racines v5 — Profil</title>
+  <title>Racines — Profil</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="device">
-  <div class="status-bar"><span class="time">9:41</span><span class="icons">●●● WiFi 🔋</span></div>
-  <!-- PAGE : PROFIL — profil.html -->
+<!-- PAGE : PROFIL — profil.html -->
   <div class="screen active" id="s-profil">
     <div class="profil-hero">
       <button class="profil-edit-btn">✏️</button>
@@ -61,7 +59,7 @@
       <div class="profil-row"><div class="profil-row-icon">❓</div><div class="profil-row-text"><div class="profil-row-title">Aide &amp; support</div><div class="profil-row-sub">FAQ, contact, conditions</div></div><div class="profil-row-arrow">›</div></div>
 
       <div style="padding:14px 0 24px;">
-        <button class="btn btn-ghost" style="color:#c62828;border-color:#ffcdd2;" onclick="if(confirm('Se déconnecter ?')){go('login');toast('À bientôt 🌿');}">Se déconnecter</button>
+        <button class="btn btn-ghost" style="color:#c62828;border-color:#ffcdd2;" onclick="if(confirm('Se déconnecter ?')){go('index');toast('À bientôt 🌿');}">Se déconnecter</button>
         <div style="text-align:center;font-size:0.6rem;color:var(--text-lt);margin-top:12px;letter-spacing:1px;">Racines v5 · par Ferme Gaïa</div>
       </div>
     </div>
@@ -74,8 +72,6 @@
       <div class="nav-item troc-nav" onclick="go('trocvert')"><div class="nav-icon">🔄</div><div class="nav-label">TrocVert</div></div>
     </div>
   </div>
-</div>
-<div class="device-label">Racines v5 — Profil</div>
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
 </body>

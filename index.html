@@ -3,39 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Racines v5 — Connexion</title>
+  <title>Racines — par Ferme Gaïa</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="device">
-  <div class="status-bar">
-    <span class="time">9:41</span>
-    <span class="icons">●●● WiFi 🔋</span>
+
+<!-- ============================================================
+     PAGE D'ACCUEIL / LOGIN — Plein écran
+     La classe "fullscreen" sur le <body> active le style plein écran
+     (au lieu du cadre de téléphone utilisé par les autres pages).
+     ============================================================ -->
+<body class="fullscreen">
+
+<div class="app-container">
+
+  <!-- En-tête de marque -->
+  <div class="brand">
+    <div class="brand-leaf">🌿</div>
+    <h1 class="brand-name">Racines</h1>
+    <div class="brand-sub">par Ferme Gaïa</div>
   </div>
 
-  <!-- ======================================================
-       PAGE : LOGIN / SPLASH
-       Fichier : login.html
-       Liens vers : ob1.html (nouveau compte) | accueil.html (déjà membre)
-       ====================================================== -->
-  <div class="screen active" id="s-splash">
-    <div class="splash-leaf">🌿</div>
-    <div class="splash-title">Racines</div>
-    <div class="splash-sub">par Ferme Gaïa</div>
-    <div class="splash-tagline">"Cultive, cuisine, économise et échange. On t'accompagne à chaque étape."</div>
-    <div class="splash-stats">
-      <div class="splash-stat"><div class="splash-stat-num">3 240</div><div class="splash-stat-lbl">Membres</div></div>
-      <div class="splash-stat"><div class="splash-stat-num">52 k$</div><div class="splash-stat-lbl">Économisés</div></div>
-      <div class="splash-stat"><div class="splash-stat-num">847</div><div class="splash-stat-lbl">Échanges</div></div>
+  <!-- VUE 1 — Accueil / choix initial -->
+  <div class="view active" id="view-welcome">
+    <div class="welcome-tagline">
+      "Cultive, cuisine, économise et échange. On t'accompagne à chaque étape."
     </div>
-    <button class="btn btn-olive" onclick="go('ob1')" style="margin-bottom:10px;">Commencer — c'est gratuit</button>
-    <button class="btn btn-ghost" onclick="go('accueil')">J'ai déjà un compte</button>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">3 240</div><div class="stat-lbl">Membres</div></div>
+      <div class="stat"><div class="stat-num">52 k$</div><div class="stat-lbl">Économisés</div></div>
+      <div class="stat"><div class="stat-num">847</div><div class="stat-lbl">Échanges</div></div>
+    </div>
+
+    <button class="btn-auth btn-auth-primary" onclick="showView('signup')">
+      🌱 Créer un compte — c'est gratuit
+    </button>
+    <button class="btn-auth btn-auth-secondary" onclick="showView('login')">
+      J'ai déjà un compte
+    </button>
+  </div>
+
+  <!-- VUE 2 — Formulaire d'inscription -->
+  <div class="view" id="view-signup">
+    <div class="auth-card">
+      <button class="card-back" onclick="showView('welcome')">← Retour</button>
+      <h2 class="card-title">Crée ton compte</h2>
+      <p class="card-subtitle">Rejoins la communauté Racines en quelques secondes.</p>
+
+      <div class="field">
+        <label for="signup-name">Ton prénom</label>
+        <input type="text" id="signup-name" placeholder="Marie" autocomplete="given-name">
+        <div class="field-error" id="err-signup-name">Indique ton prénom.</div>
+      </div>
+
+      <div class="field">
+        <label for="signup-email">Courriel</label>
+        <input type="email" id="signup-email" placeholder="marie@exemple.com" autocomplete="email">
+        <div class="field-error" id="err-signup-email">Courriel invalide.</div>
+      </div>
+
+      <div class="field">
+        <label for="signup-pwd">Mot de passe</label>
+        <div class="pwd-wrapper">
+          <input type="password" id="signup-pwd" placeholder="Au moins 8 caractères" autocomplete="new-password">
+          <button type="button" class="pwd-toggle" onclick="togglePwd('signup-pwd', this)" aria-label="Afficher le mot de passe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+        <div class="pwd-strength" id="pwd-strength">
+          <div class="pwd-bar"><div class="pwd-bar-fill" id="pwd-bar-fill"></div></div>
+          <div class="pwd-label" id="pwd-label">—</div>
+        </div>
+        <div class="field-error" id="err-signup-pwd">Le mot de passe doit avoir au moins 8 caractères.</div>
+      </div>
+
+      <div class="field">
+        <label for="signup-pwd2">Confirme le mot de passe</label>
+        <div class="pwd-wrapper">
+          <input type="password" id="signup-pwd2" placeholder="Recopie le mot de passe" autocomplete="new-password">
+          <button type="button" class="pwd-toggle" onclick="togglePwd('signup-pwd2', this)" aria-label="Afficher le mot de passe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+        <div class="field-error" id="err-signup-pwd2">Les mots de passe ne correspondent pas.</div>
+      </div>
+
+      <button class="btn-auth btn-auth-primary" onclick="handleSignup()">
+        Créer mon compte 🌿
+      </button>
+
+      <div class="link-row">
+        Déjà membre ? <a onclick="showView('login')">Se connecter</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VUE 3 — Formulaire de connexion -->
+  <div class="view" id="view-login">
+    <div class="auth-card">
+      <button class="card-back" onclick="showView('welcome')">← Retour</button>
+      <h2 class="card-title">Bon retour !</h2>
+      <p class="card-subtitle">Connecte-toi pour retrouver ton jardin.</p>
+
+      <div class="field">
+        <label for="login-email">Courriel</label>
+        <input type="email" id="login-email" placeholder="marie@exemple.com" autocomplete="email">
+        <div class="field-error" id="err-login-email">Courriel invalide.</div>
+      </div>
+
+      <div class="field">
+        <label for="login-pwd">Mot de passe</label>
+        <div class="pwd-wrapper">
+          <input type="password" id="login-pwd" placeholder="Ton mot de passe" autocomplete="current-password">
+          <button type="button" class="pwd-toggle" onclick="togglePwd('login-pwd', this)" aria-label="Afficher le mot de passe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+        <div class="field-error" id="err-login-pwd">Mot de passe incorrect.</div>
+      </div>
+
+      <div class="forgot-link">
+        <a onclick="forgotPassword()">Mot de passe oublié ?</a>
+      </div>
+
+      <button class="btn-auth btn-auth-primary" onclick="handleLogin()">
+        Se connecter
+      </button>
+
+      <div class="link-row">
+        Pas encore membre ? <a onclick="showView('signup')">Créer un compte</a>
+      </div>
+    </div>
   </div>
 
 </div>
-<div class="device-label">Racines v5 — Login</div>
+
+<div class="login-footer">
+  <span class="copyright">© 2026 Racines · par Ferme Gaïa</span>
+  <span class="legal">Tous droits réservés · Saint-Hyacinthe, Québec</span>
+</div>
+
 <div class="toast" id="toast"></div>
+
 <script src="app.js"></script>
+<script>initLoginPage();</script>
+
 </body>
 </html>

@@ -6,24 +6,46 @@
 /* Variables */
 :root {
   --brun:#4a3728; --brun-md:#6b5744; --brun-lt:#9c7c65;
-  --olive:#6b7c4a; --olive-lt:#8fa066;
+  --olive:#6b7c4a; --olive-lt:#8fa066; --olive-dk:#4a5c2a;
   --beige:#f2ead8; --beige-md:#d4c5a9; --beige-dk:#c4ae88;
   --white:#fffdf7; --text:#3a2e22; --text-lt:#7a6555;
-  --gold:#c49a2a; --troc:#2e7d32; --troc-lt:#43a047; --troc-bg:#e8f5e9;
+  --gold:#c49a2a; --error:#c14a3b;
+  --troc:#2e7d32; --troc-lt:#43a047; --troc-bg:#e8f5e9;
   --cal:#1565c0; --cal-bg:#e3f2fd;
 }
 
 /* Reset */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
-/* Layout principal */
-body{background:#e8dfc8;display:flex;flex-direction:column;align-items:center;min-height:100vh;font-family:'Lato',sans-serif;padding:24px 16px 40px;}
-.device{width:375px;height:780px;background:var(--beige);border-radius:44px;overflow:hidden;box-shadow:0 32px 80px rgba(74,55,40,0.35),0 0 0 8px var(--brun);}
-.status-bar{background:var(--brun);padding:10px 24px 6px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.status-bar .time{color:var(--beige);font-size:0.75rem;font-weight:700;}
-.status-bar .icons{color:var(--beige);font-size:0.7rem;opacity:0.8;}
-.screen{display:none;flex-direction:column;height:calc(780px - 36px);overflow-y:auto;scrollbar-width:none;animation:fadeIn 0.25s ease;}
-.screen::-webkit-scrollbar{display:none;}
+/* ============================================================
+   Layout principal — Vraie app plein écran
+   - Sur mobile : prend 100% de la largeur
+   - Sur desktop : max 500px, centré, fond sombre autour
+   - Page login (body.fullscreen) : voir section dédiée plus bas
+   ============================================================ */
+body{
+  background:var(--beige);
+  font-family:'Lato',sans-serif;
+  margin:0;
+  min-height:100vh;
+}
+/* Sur grand écran : fond sombre autour de la zone app */
+@media (min-width: 600px) {
+  body:not(.fullscreen) {
+    background:#2a1f15;
+  }
+}
+
+.screen{
+  display:none;
+  flex-direction:column;
+  min-height:100vh;
+  max-width:500px;
+  margin:0 auto;
+  background:var(--beige);
+  overflow-x:hidden;
+  animation:fadeIn 0.25s ease;
+}
 .screen.active{display:flex;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -387,3 +409,385 @@ body{background:#e8dfc8;display:flex;flex-direction:column;align-items:center;mi
 
 /* ===== ÉTIQUETTE ===== */
 .device-label{text-align:center;margin-top:14px;font-size:0.72rem;color:#8a7a6a;letter-spacing:1px;text-transform:uppercase;}
+
+/* ============================================================
+   ===== PAGE D'ACCUEIL / LOGIN — Plein écran (vraie app) =====
+   Utilisée uniquement par index.html
+   Activée par <body class="fullscreen">
+   ============================================================ */
+
+body.fullscreen {
+  background: linear-gradient(160deg, #5a4530 0%, #4a3728 50%, #3a2a1c 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Décorations de fond (cercles lumineux) */
+body.fullscreen::before {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(107,124,74,0.15) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+body.fullscreen::after {
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(196,154,42,0.08) 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Conteneur principal de la page login */
+.app-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 24px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* En-tête de marque */
+.brand {
+  text-align: center;
+  margin-bottom: 32px;
+  animation: fadeInDown 0.6s ease;
+}
+.brand-leaf {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--beige);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.brand-sub {
+  font-size: 0.72rem;
+  color: var(--beige-dk);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Vues (welcome / signup / login) */
+.view {
+  display: none;
+  width: 100%;
+  animation: fadeIn 0.35s ease;
+}
+.view.active { display: block; }
+
+/* Vue de bienvenue */
+.welcome-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--beige-md);
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 0 12px;
+}
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--olive-lt);
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.6rem;
+  color: var(--beige-dk);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Carte de formulaire */
+.auth-card {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 28px 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  width: 100%;
+}
+.card-back {
+  background: none;
+  border: none;
+  color: var(--text-lt);
+  font-size: 0.85rem;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 4px 0;
+}
+.card-back:hover { color: var(--brun); }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-lt);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+/* Champs de formulaire */
+.field {
+  margin-bottom: 16px;
+}
+.field label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-lt);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.field input {
+  width: 100%;
+  background: var(--beige);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.field input:focus {
+  border-color: var(--olive);
+  background: #f8f3e4;
+}
+.field input.error {
+  border-color: var(--error);
+  background: #fdf0ee;
+}
+.field-error {
+  font-size: 0.72rem;
+  color: var(--error);
+  margin-top: 5px;
+  display: none;
+}
+.field-error.show { display: block; }
+
+/* Indicateur de force du mot de passe */
+.pwd-strength {
+  margin-top: 6px;
+  display: none;
+}
+.pwd-strength.show { display: block; }
+.pwd-bar {
+  height: 4px;
+  background: var(--beige-md);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.pwd-bar-fill {
+  height: 100%;
+  width: 0;
+  transition: width 0.25s, background 0.25s;
+  border-radius: 2px;
+}
+.pwd-label {
+  font-size: 0.7rem;
+  color: var(--text-lt);
+  font-weight: 700;
+}
+
+/* Boutons de la page login */
+.btn-auth {
+  border: none;
+  border-radius: 13px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  width: 100%;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  transition: transform 0.15s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-auth:active { transform: scale(0.97); }
+.btn-auth-primary {
+  background: linear-gradient(135deg, var(--olive), var(--olive-dk));
+  color: var(--beige);
+  box-shadow: 0 6px 20px rgba(107,124,74,0.4);
+  margin-top: 8px;
+}
+.btn-auth-primary:hover { box-shadow: 0 8px 24px rgba(107,124,74,0.5); }
+.btn-auth-secondary {
+  background: rgba(255,255,255,0.08);
+  color: var(--beige);
+  border: 1.5px solid rgba(242,234,216,0.3);
+  backdrop-filter: blur(10px);
+  margin-top: 12px;
+}
+.btn-auth-secondary:hover { background: rgba(255,255,255,0.14); }
+
+/* Liens */
+.link-row {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: var(--text-lt);
+}
+.link-row a {
+  color: var(--olive);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.link-row a:hover { text-decoration: underline; }
+.forgot-link {
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 14px;
+  font-size: 0.76rem;
+}
+.forgot-link a {
+  color: var(--olive);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Pied de page de la page login */
+.login-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.68rem;
+  color: var(--beige-dk);
+  letter-spacing: 1px;
+}
+
+/* Toast pour la page login (position fixe en bas) */
+body.fullscreen .toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--brun);
+  color: var(--beige);
+  padding: 12px 20px;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+body.fullscreen .toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive desktop pour la page login */
+@media (min-width: 768px) {
+  body.fullscreen .brand-name { font-size: 3.5rem; }
+  body.fullscreen .brand-leaf { font-size: 4rem; }
+}
+
+/* ============================================================
+   ===== TOGGLE ŒIL — Afficher / cacher le mot de passe =====
+   ============================================================ */
+.pwd-wrapper {
+  position: relative;
+}
+.pwd-wrapper input {
+  padding-right: 46px; /* espace pour l'icône œil à droite */
+}
+.pwd-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-lt);
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+.pwd-toggle:hover {
+  background: rgba(74, 55, 40, 0.07);
+  color: var(--brun);
+}
+.pwd-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* ===== Pied de page de la page login (mise à jour) ===== */
+.login-footer .copyright {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: var(--beige-md);
+}
+.login-footer .legal {
+  font-size: 0.62rem;
+  color: var(--beige-dk);
+  opacity: 0.7;
+}
